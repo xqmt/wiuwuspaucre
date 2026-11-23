@@ -1,0 +1,4118 @@
+local Players = game:GetService("Players")
+Players.LocalPlayer.PlayerGui.TSBWarningGui:Destroy()
+local CoreGui = game:GetService("CoreGui")
+CoreGui.TSBWarningGui:Destroy()
+local Lighting = game:GetService("Lighting")
+Lighting.TSBWarningBlur:Destroy()
+local TweenService = game:GetService("TweenService")
+local Players2 = game:GetService("Players")
+local Lighting2 = game:GetService("Lighting")
+local BindableEvent = Instance.new("BindableEvent")
+local BlurEffect = Instance.new("BlurEffect")
+BlurEffect.Name = "TSBWarningBlur"
+BlurEffect.Size = 0
+BlurEffect.Parent = Lighting2
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "TSBWarningGui"
+ScreenGui.DisplayOrder = 99999
+ScreenGui.ResetOnSpawn = false
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.Parent = Players2.LocalPlayer:WaitForChild("PlayerGui")
+local Frame = Instance.new("Frame")
+Frame.BackgroundTransparency = 1
+Frame.Active = true
+Frame.BackgroundColor3 = Color3.new(0, 0, 0)
+Frame.ZIndex = 1
+Frame.BorderSizePixel = 0
+Frame.Size = UDim2.fromScale(1, 1)
+Frame.Parent = ScreenGui
+local Frame2 = Instance.new("Frame")
+Frame2.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame2.Name = "WarningPanel"
+Frame2.Position = UDim2.fromScale(0.5, 0.5)
+Frame2.BackgroundColor3 = Color3.fromRGB(14, 14, 16)
+Frame2.ZIndex = 2
+Frame2.BorderSizePixel = 0
+Frame2.Size = UDim2.fromOffset(460, 286)
+Frame2.Parent = Frame
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 11)
+UICorner.Parent = Frame2
+local UIStroke = Instance.new("UIStroke")
+UIStroke.Color = Color3.fromRGB(48, 48, 54)
+UIStroke.Transparency = 0.15
+UIStroke.Thickness = 1
+UIStroke.Parent = Frame2
+local UIScale = Instance.new("UIScale")
+UIScale.Scale = (
+	math.clamp(
+		math.min((workspace.CurrentCamera.ViewportSize.X / 500), (workspace.CurrentCamera.ViewportSize.Y / 330)),
+		0.68,
+		1
+	) * 0.96
+)
+UIScale.Parent = Frame2
+local Frame3 = Instance.new("Frame")
+Frame3.Position = UDim2.new(0, 0, 0, 0)
+Frame3.BackgroundColor3 = Color3.fromRGB(220, 45, 60)
+Frame3.ZIndex = 3
+Frame3.BorderSizePixel = 0
+Frame3.Size = UDim2.new(1, 0, 0, 2)
+Frame3.Parent = Frame2
+local TextLabel = Instance.new("TextLabel")
+TextLabel.TextWrapped = true
+TextLabel.TextColor3 = Color3.fromRGB(245, 245, 247)
+TextLabel.Text = "Anti-cheat warning"
+TextLabel.ZIndex = 3
+TextLabel.TextSize = 21
+TextLabel.Font = Enum.Font.GothamSemibold
+TextLabel.BackgroundTransparency = 1
+TextLabel.Position = UDim2.new(0, 28, 0, 27)
+TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel.TextYAlignment = Enum.TextYAlignment.Center
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(1, -56, 0, 32)
+TextLabel.Parent = Frame2
+local TextLabel2 = Instance.new("TextLabel")
+TextLabel2.TextWrapped = true
+TextLabel2.TextColor3 = Color3.fromRGB(165, 165, 175)
+TextLabel2.Text =
+	"TSB may have updated its anti-cheat.\nThird-party scripts may be detected and could lead to kicks or account moderation. Please understand the risks before continuing."
+TextLabel2.ZIndex = 3
+TextLabel2.TextSize = 12
+TextLabel2.Font = Enum.Font.Gotham
+TextLabel2.BackgroundTransparency = 1
+TextLabel2.Position = UDim2.new(0, 28, 0, 77)
+TextLabel2.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel2.TextYAlignment = Enum.TextYAlignment.Center
+TextLabel2.BorderSizePixel = 0
+TextLabel2.Size = UDim2.new(1, -56, 0, 66)
+TextLabel2.Parent = Frame2
+local Frame4 = Instance.new("Frame")
+Frame4.Position = UDim2.new(0, 28, 0, 158)
+Frame4.BackgroundColor3 = Color3.fromRGB(48, 48, 54)
+Frame4.ZIndex = 3
+Frame4.BorderSizePixel = 0
+Frame4.Size = UDim2.new(1, -56, 0, 1)
+Frame4.Parent = Frame2
+local TextLabel3 = Instance.new("TextLabel")
+TextLabel3.TextWrapped = true
+TextLabel3.TextColor3 = Color3.fromRGB(205, 110, 118)
+TextLabel3.Text = "Proceed at your own risk."
+TextLabel3.ZIndex = 3
+TextLabel3.TextSize = 11
+TextLabel3.Font = Enum.Font.Gotham
+TextLabel3.BackgroundTransparency = 1
+TextLabel3.Position = UDim2.new(0, 28, 0, 174)
+TextLabel3.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel3.TextYAlignment = Enum.TextYAlignment.Center
+TextLabel3.BorderSizePixel = 0
+TextLabel3.Size = UDim2.new(1, -56, 0, 20)
+TextLabel3.Parent = Frame2
+local TextButton = Instance.new("TextButton")
+TextButton.TextColor3 = Color3.new(1, 1, 1)
+TextButton.Text = "Copy Discord invite"
+TextButton.AutoButtonColor = false
+TextButton.Font = Enum.Font.GothamMedium
+TextButton.BackgroundColor3 = Color3.fromRGB(220, 45, 60)
+TextButton.Position = UDim2.new(0, 28, 0, 218)
+TextButton.TextSize = 12
+TextButton.ZIndex = 4
+TextButton.BorderSizePixel = 0
+TextButton.Size = UDim2.new(0.5, -34, 0, 42)
+TextButton.Parent = Frame2
+local UICorner2 = Instance.new("UICorner")
+UICorner2.CornerRadius = UDim.new(0, 7)
+UICorner2.Parent = TextButton
+local TextButton2 = Instance.new("TextButton")
+TextButton2.TextColor3 = Color3.fromRGB(245, 245, 247)
+TextButton2.Text = "Continue"
+TextButton2.AutoButtonColor = false
+TextButton2.Font = Enum.Font.GothamMedium
+TextButton2.BackgroundColor3 = Color3.fromRGB(25, 25, 29)
+TextButton2.Position = UDim2.new(0.5, 6, 0, 218)
+TextButton2.TextSize = 12
+TextButton2.ZIndex = 4
+TextButton2.BorderSizePixel = 0
+TextButton2.Size = UDim2.new(0.5, -34, 0, 42)
+TextButton2.Parent = Frame2
+local UICorner3 = Instance.new("UICorner")
+UICorner3.CornerRadius = UDim.new(0, 7)
+UICorner3.Parent = TextButton2
+local UIStroke2 = Instance.new("UIStroke")
+UIStroke2.Color = Color3.fromRGB(48, 48, 54)
+UIStroke2.Transparency = 0.1
+UIStroke2.Thickness = 1
+UIStroke2.Parent = TextButton2
+TextButton.Activated:Connect(function()
+	setclipboard("https://discord.gg/m28ZsGySBQ")
+	TextButton.Text = "Invite copied"
+	TextButton.BackgroundColor3 = Color3.fromRGB(40, 115, 76)
+	task.delay(1.5, function() end)
+end)
+TextButton.MouseEnter:Connect(function()
+	local Create = TweenService:Create(
+		TextButton,
+		TweenInfo.new(0.12, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+		{ BackgroundColor3 = Color3.fromRGB(240, 59, 73) }
+	)
+	Create:Play()
+end)
+TextButton.MouseLeave:Connect(function()
+	local Create2 = TweenService:Create(
+		TextButton,
+		TweenInfo.new(0.12, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+		{ BackgroundColor3 = Color3.fromRGB(220, 45, 60) }
+	)
+	Create2:Play()
+end)
+TextButton2.MouseEnter:Connect(function()
+	local Create3 = TweenService:Create(
+		TextButton2,
+		TweenInfo.new(0.12, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+		{ BackgroundColor3 = Color3.fromRGB(38, 38, 43) }
+	)
+	Create3:Play()
+end)
+TextButton2.MouseLeave:Connect(function()
+	local Create4 = TweenService:Create(
+		TextButton2,
+		TweenInfo.new(0.12, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+		{ BackgroundColor3 = Color3.fromRGB(25, 25, 29) }
+	)
+	Create4:Play()
+end)
+TextButton2.Activated:Connect(function()
+	local Create5 = TweenService:Create(
+		Frame,
+		TweenInfo.new(0.2, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+		{ BackgroundTransparency = 1 }
+	)
+	Create5:Play()
+	local Create6 =
+		TweenService:Create(
+			UIScale,
+			TweenInfo.new(0.2, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+			{
+				Scale = (math.clamp(
+					math.min(
+						(workspace.CurrentCamera.ViewportSize.X / 500),
+						(workspace.CurrentCamera.ViewportSize.Y / 330)
+					),
+					0.68,
+					1
+				) * 0.97),
+			}
+		)
+	Create6:Play()
+	local Create7 = TweenService:Create(
+		BlurEffect,
+		TweenInfo.new(0.2, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+		{ Size = 0 }
+	)
+	Create7:Play()
+	task.delay(0.22, function() end)
+	BindableEvent:Fire()
+end)
+local Create8 = TweenService:Create(
+	Frame,
+	TweenInfo.new(0.25, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+	{ BackgroundTransparency = 0.42 }
+)
+Create8:Play()
+local Create9 = TweenService:Create(
+	UIScale,
+	TweenInfo.new(0.25, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+	{
+		Scale = math.clamp(
+			math.min((workspace.CurrentCamera.ViewportSize.X / 500), (workspace.CurrentCamera.ViewportSize.Y / 330)),
+			0.68,
+			1
+		),
+	}
+)
+Create9:Play()
+local Create10 = TweenService:Create(
+	BlurEffect,
+	TweenInfo.new(0.25, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+	{ Size = 12 }
+)
+Create10:Play()
+BindableEvent:Destroy()
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+local Players3 = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local Workspace = game:GetService("Workspace")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local TextLabel4 = Instance.new("TextLabel")
+TextLabel4.RichText = true
+VirtualInputManager.SendKeyEvent = function() end
+local Gradient = WindUI:Gradient(
+	{
+		["0"] = { Color = Color3.fromHex("#200000"), Transparency = 0 },
+		["100"] = { Color = Color3.fromHex("#0d0000"), Transparency = 0 },
+	},
+	{ Rotation = 0 }
+)
+WindUI:AddTheme({
+	Name = "BloodShadow",
+	Accent = Gradient,
+	Active = Color3.fromHex("#990000"),
+	Background = Color3.fromHex("#0a0000"),
+	Border = Color3.fromHex("#330000"),
+	Button = Color3.fromHex("#4d0000"),
+	Dialog = Color3.fromHex("#120000"),
+	Hover = Color3.fromHex("#660000"),
+	Icon = Color3.fromHex("#b30000"),
+	Outline = Color3.fromHex("#3a0a0a"),
+	Placeholder = Color3.fromHex("#0a0000"),
+	ScrollBar = Color3.fromHex("#2e0000"),
+	Text = Color3.fromHex("#ffcccc"),
+})
+WindUI:SetFont("rbxassetid://12187377325")
+WindUI:Localization({
+	DefaultLanguage = "en",
+	Enabled = true,
+	Prefix = "loc:",
+	Translations = {
+		en = {
+			AUTOCOUNTER_DISTANCE = "Counter Distance",
+			AUTOTECH_TITLE = "Dovi's Hub v1.1",
+			AUTO_COUNTER = "Auto Counter",
+			COUNTER_TOXIC = "Counter Toxic",
+			DOWN_SLAM = "True Down Slam",
+			ENABLE_FEATURE = "Enable Feature",
+			FPS_BOOST = "FPS Boost",
+			INSTANT_TWISTED = "Instant Twisted",
+			KIBA = "Kiba",
+			KIBA_CHAOS_TIME = "Kiba Chaos Time",
+			KIBA_DELAY = "Kiba Delay (s)",
+			KIBA_DISTANCE = "Kiba Distance",
+			KIBA_LOCK_TIME = "Kiba Lock Time",
+			KIBA_TWEEN_TIME = "Kiba Tween Time",
+			KYOTO_COMBO = "Kyoto Combo",
+			KYOTO_DELAY = "Kyoto Delay (ms)",
+			LETHAL_DASH = "Lethal Dash",
+			LETHAL_DASH_DELAY = "Lethal Dash Delay (ms)",
+			LOOP_DASH = "Loop Dash",
+			LOOP_DASH_COUNT = "Dash Count",
+			LOOP_DASH_INTERVAL = "Dash Interval (ms)",
+			LOOP_DELAY = "Loop Dash Delay (ms)",
+			LOOP_MAX_HEIGHT = "Max Height",
+			LOOP_RADIUS = "Loop Radius (studs)",
+			LOOP_SETTLE_HOLD = "Settle Hold (s)",
+			LOOP_SETTLE_TIME = "Settle Time (s)",
+			LOOP_STEPS = "Loop Steps",
+			M1_DISTANCE = "M1 Distance",
+			M1_RESET = "M1 Reset",
+			M1_ROTATION = "M1 Rotation",
+			M2_BLOCK = "M2 Block",
+			NO_CLIP = "No Clip Players",
+			RESPAWN = "Respawn at Death",
+			SETTINGS = "Settings",
+			SHOW_CHARACTER = "Show Character",
+			SUPAV2_ANGLE = "Random Angle",
+			SUPAV2_DELAY = "Supa V2 Delay (ms)",
+			SUPAV2_DISTANCE = "Teleport Distance",
+			SUPAV2_SPEED = "Supa V2 Speed (x10)",
+			SUPA_BEHIND = "Supa Behind Offset",
+			SUPA_BEHIND_TOGGLE = "Teleport Behind",
+			SUPA_DELAY = "Supa Delay (ms)",
+			SUPA_LOCK = "Lock Percentage",
+			SUPA_RANDOM = "Random Movement",
+			SUPA_SPEED = "Supa Speed (x10)",
+			SUPA_TECH = "Supa Tech",
+			SUPA_V2 = "Supa V2",
+			TECH_HELPER = "Tech Helper",
+			TECH_HELPER_DELAY = "Tech Helper Delay (ms)",
+			TECH_HELPER_HOLD = "Tech Helper Hold (ms)",
+			TECH_HELPER_LOCK = "Tech Helper Lock Percentage",
+			TECH_HELPER_LOOK = "Tech Helper Look Up",
+			UTILITIES = "Utilities",
+		},
+	},
+})
+WindUI.TransparencyValue = 0.2
+WindUI:SetTheme("BloodShadow")
+local function GradientText(text, fromColor, toColor)
+	local result = ""
+	for i = 1, #text do
+		local t = (i - 1) / math.max(#text - 1, 1)
+		local r = math.floor((fromColor.R + (toColor.R - fromColor.R) * t) * 255)
+		local g = math.floor((fromColor.G + (toColor.G - fromColor.G) * t) * 255)
+		local b = math.floor((fromColor.B + (toColor.B - fromColor.B) * t) * 255)
+		result = result .. string.format('<font color="rgb(%d,%d,%d)">%s</font>', r, g, b, text:sub(i, i))
+	end
+	return result
+end
+WindUI:Popup({
+	Title = GradientText("Dovi'HUB/AutoTech beta v1.2", Color3.fromHex("#a00e0e"), Color3.fromHex("#490303")),
+	Buttons = { { Title = "Enjoy!", Icon = "lucide:heart", Variant = "Primary", Callback = function() end } },
+	Content = "Please join the discord server !",
+	Icon = "lucide:smile",
+})
+local Window = WindUI:CreateWindow({
+	Title = "Dovi's Hub v1.2",
+	Author = "Auto Tech",
+	Background = "rbxassetid://118938778997085",
+	Folder = "DoviHub",
+	HidePanelBackground = false,
+	HideSearchBar = false,
+	Icon = "rbxassetid://88536674439005",
+	KeySystem = {
+		Key = { "qb7HLcqv2o5rdNzpeFbY", "TESTERROLE67" },
+		Note = "KeyCode click on button to copy the link !(UPDATED)",
+		SaveKey = true,
+		Thumbnail = { Image = "rbxassetid://88536674439005" },
+		URL = "https://link-target.net/1413782/Mheo8fFyvZFZ",
+	},
+	NewElements = true,
+	SideBarWidth = 200,
+	Size = UDim2.fromOffset(650, 550),
+	Theme = "BloodShadow",
+	User = {
+		Anonymous = false,
+		Enabled = true,
+		Callback = function()
+			WindUI:Notify({ Title = "ITS ME OMG!", Content = "Bro its just your goffy ahh", Duration = 2 })
+		end,
+	},
+})
+Window:Tag({ Title = "Beta", Color = Color3.fromHex("#315dff") })
+Window:CreateTopbarButton("theme-switcher", "geist:logo-discord", function()
+	setclipboard("https://discord.com/invite/2ACBzQkCDs")
+	WindUI:Notify({
+		Title = "Discord link has been copied!",
+		Content = "Please join our discord!",
+		Duration = 3,
+		Icon = "geist:logo-discord",
+	})
+end, 990)
+Window:CreateTopbarButton("theme-switcherr", "lucide:youtube", function()
+	setclipboard("https://www.youtube.com/@CallMeDovy")
+	WindUI:Notify({
+		Title = "Youtube Channel link has been copied!",
+		Content = "Please Subscribe!",
+		Duration = 3,
+		Icon = "lucide:youtube",
+	})
+end, 990)
+Window:CreateTopbarButton("theme-switcherr", "geist:logo-github", function()
+	setclipboard("https://github.com/needanewphone32-eng")
+	WindUI:Notify({
+		Title = "My GitHub link has been copied!",
+		Content = "Please Follow!",
+		Duration = 3,
+		Icon = "geist:logo-github",
+	})
+end, 990)
+Window:CreateTopbarButton("theme-switcherr", "lucide:circle-dollar-sign", function()
+	setclipboard("https://www.roblox.com/games/17266556805/Xasssyyts-Place#!/store")
+	WindUI:Notify({
+		Title = "Donations link has been copied!",
+		Content = "Please Donate !",
+		Duration = 3,
+		Icon = "lucide:circle-dollar-sign",
+	})
+end, 990)
+local Tab = Window:Tab({ Title = "Supa ", Icon = "lucide:sword", Opened = true })
+local Tab2 = Window:Tab({ Title = "Hook Dash [Beta]", Icon = "geist:anchor", Opened = true })
+local Tab3 = Window:Tab({ Title = "Loop Dash", Icon = "lucide:refresh-ccw-dot", Opened = true })
+local Tab4 = Window:Tab({ Title = "Loop Dash v2", Icon = "lucide:refresh-ccw-dot", Opened = true })
+local Tab5 = Window:Tab({ Title = "Kitty Tech", Icon = "lucide:cat", Opened = true })
+local Tab6 = Window:Tab({ Title = "Kyoto Combo", Icon = "lucide:step-forward", Opened = true })
+local Tab7 = Window:Tab({ Title = "Lethal Dash", Icon = "geist:arrow-up-down", Opened = true })
+local Tab8 = Window:Tab({ Title = "M1 Reset", Icon = "geist:clock-dashed", Opened = true })
+local Tab9 = Window:Tab({ Title = "Instant Twisted", Icon = "lucide:corner-up-right", Opened = true })
+local Tab10 = Window:Tab({ Title = "AutoBlock", Icon = "lucide:shield", Opened = true })
+local Tab11 = Window:Tab({ Title = "Kiba", Icon = "lucide:crosshair", Opened = true })
+local Tab12 = Window:Tab({ Title = "Auto Counter", Icon = "lucide:shield-user", Opened = true })
+local Tab13 = Window:Tab({ Title = "HitboxAbuse", Icon = "geist:box", Opened = true })
+local Tab14 = Window:Tab({ Title = "Tech Helper", Icon = "lucide:hand-helping", Opened = true })
+local Tab15 = Window:Tab({ Title = "Animations", Icon = "lucide:play", Opened = true })
+local Tab16 = Window:Tab({ Title = "Utilities", Icon = "lucide:square-plus", Opened = true })
+local Tab17 = Window:Tab({ Title = "Settings", Icon = "lucide:settings", Opened = true })
+Window:Tab({
+	Title = 'Backdash Cancel<stroke color="#ff7300" thickness="2" transparency="0.50" joins="miter">[COMING SOON]</stroke>',
+	Icon = "geist:lock-closed",
+	Locked = true,
+	Opened = true,
+})
+Window:Tab({
+	Title = 'Compatetive<stroke color="#ff7300" thickness="2" transparency="0.50" joins="miter">[COMING SOON]</stroke>',
+	Icon = "geist:lock-closed",
+	Locked = true,
+	Opened = true,
+})
+Window:Tab({
+	Title = 'Supa REWORK<stroke color="#ff7300" thickness="2" transparency="0.50" joins="miter">[COMING SOON]</stroke>',
+	Icon = "geist:lock-closed",
+	Locked = true,
+	Opened = true,
+})
+Window:Tab({
+	Title = 'Wall Extend<stroke color="#ff7300" thickness="2" transparency="0.50" joins="miter">[COMING SOON]</stroke>',
+	Icon = "geist:lock-closed",
+	Locked = true,
+	Opened = true,
+})
+Tab:Select()
+Window:Dialog({
+	Title = "Change logs Beta v1.2",
+	Buttons = { { Title = "Confirm", Callback = function() end } },
+	Content = "Auto tech beta 1.2 !\n- Added Hook Dash (mobile and pc)\n- Reworked Kyoto Combo\n- Reworked Lethal Dash\n- Changed M1 Reset\n- Reworked Auto Counter\n- Added Auto Block\n- Added Hitbox Abuse (pc only)\n- Changed Tech Helper\n- Changed Animations tab\n- Changed Utilities tab\n- Changed Settings tab\n- Added Side Dash config options\n- Added Kitty Tech (Kiba)\n\nPlease join the discord server ! you can get full log there !",
+	Icon = "rbxassetid://88536674439005",
+})
+Tab5:Paragraph({
+	Title = "Kitty Tech",
+	Color = Color3.fromHex("#ff6b6b"),
+	Desc = "Made by ItzSoph — credits to him! (W.I.P)",
+	Image = "swords",
+	ImageSize = 20,
+})
+Players3.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").AnimationPlayed:Connect(function() end)
+Players3.LocalPlayer.CharacterAdded:Connect(function(character)
+	character:FindFirstChildOfClass("Humanoid").AnimationPlayed:Connect(function() end)
+end)
+Tab5:Toggle({
+	Title = "Enable Kitty Tech",
+	Flag = "Save1",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+		else
+			local children = Players3.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"):GetChildren()
+			for _, v in ipairs(children) do
+				v:Destroy()
+			end
+		end
+	end,
+})
+Tab5:Dropdown({
+	Title = "Ping Preset",
+	Flag = "Save2",
+	Value = "60ms (Default)",
+	Values = { "10ms", "40ms ", "60MS", "100mS", "200ms" },
+	Callback = function() end,
+})
+Tab5:Slider({
+	Title = "Custom Ping (ms)",
+	Flag = "Save3",
+	Value = { Default = 60, Max = 400, Min = 10 },
+	Callback = function(Value) end,
+})
+Tab5:Paragraph({
+	Title = "Sorry !",
+	Color = Color3.fromHex("#ff6b6b"),
+	Desc = "Other configs will come in feture updates !",
+	Image = "lucide:sad",
+	ImageSize = 20,
+})
+Tab10:Paragraph({
+	Title = "AutoBlock (W.I.P)",
+	Color = Color3.fromHex("#0984e3"),
+	Desc = "Automatically blocks stuff — work in progress",
+	Image = "shield",
+	ImageSize = 20,
+})
+Tab10:Toggle({
+	Title = "Enable AutoBlock",
+	Flag = "Save4",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection10 = RunService.Heartbeat:Connect(function()
+				local children2 = Workspace:FindFirstChild("Live"):GetChildren()
+				for _, v2 in ipairs(children2) do
+					Players3.LocalPlayer.Character:FindFirstChild("Head").CFrame.LookVector:Dot(
+						(v2:FindFirstChild("HumanoidRootPart").Position - Players3.LocalPlayer.Character:FindFirstChild(
+							"Head"
+						).Position).Unit
+					)
+				end
+			end)
+		else
+			connection10:Disconnect()
+		end
+	end,
+})
+Tab10:Toggle({ Title = "M1 After Block", Flag = "Save5", Value = false, Callback = function() end })
+Tab10:Slider({
+	Title = "Block Distance (studs)",
+	Flag = "Save6",
+	Value = { Default = 20, Max = 30, Min = 5 },
+	Callback = function(Value) end,
+})
+Players3.PlayerAdded:Connect(function(player)
+	player.CharacterAdded:Connect(function()
+		Players3:GetPlayers()
+	end)
+end)
+Players3.PlayerRemoving:Connect(function() end)
+Players3.LocalPlayer.CharacterAdded:Connect(function()
+	task.wait(0.5)
+end)
+task.spawn(function()
+	task.wait(3)
+end)
+game.Players.LocalPlayer:GetMouse()
+Tab13:Paragraph({
+	Title = "Hitbox Abuse (W.I.P)",
+	Color = Color3.fromHex("#26067e"),
+	Desc = "Side M1[THIS ONLY WORKS FOR PC FOR NOW!]",
+	Image = "geist:box",
+	ImageSize = 20,
+})
+Tab13:Toggle({
+	Title = "Enable ",
+	Flag = "Save7",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection15 = UserInputService.InputBegan:Connect(function() end)
+		else
+			connection15:Disconnect()
+		end
+	end,
+})
+Tab13:Toggle({ Title = "Silent Lock", Flag = "Save8", Value = false, Callback = function() end })
+Tab13:Toggle({
+	Title = "Simple Show Hitbox",
+	Flag = "Save9",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local Part = Instance.new("Part")
+			Part.Name = "ScriptSimpleHitboxVisual_HitboxAbuse"
+			Part.Size = Vector3.new(8, 5, 8)
+			Part.Transparency = 1
+			Part.Anchored = true
+			Part.CanCollide = false
+			Part.Parent = workspace
+			local SelectionBox = Instance.new("SelectionBox")
+			SelectionBox.Name = "ScriptSimpleHitboxVisual_Outline"
+			SelectionBox.Adornee = Part
+			SelectionBox.LineThickness = 0.05
+			SelectionBox.Color3 = Color3.fromRGB(255, 0, 0)
+			SelectionBox.Transparency = 0.5
+			SelectionBox.Parent = Part
+			local connection16 = RunService.RenderStepped:Connect(function()
+				Part.CFrame = (
+					Players3.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame
+					* CFrame.new(0, 0, -((Vector3.new(8, 5, 8).Z / 2) - 1))
+				)
+			end)
+		else
+			connection16:Disconnect()
+			SelectionBox:Destroy()
+			Part:Destroy()
+		end
+	end,
+})
+Tab13:Colorpicker({
+	Title = "Hitbox Color",
+	Default = Color3.fromRGB(255, 0, 0),
+	Desc = "Pick a color for the hitbox outline",
+	Locked = false,
+	Transparency = 0,
+	Callback = function() end,
+})
+Tab13:Slider({
+	Title = "Angle (degrees)",
+	Flag = "Save10",
+	Value = { Default = 45, Max = 180, Min = 0 },
+	Callback = function() end,
+})
+Tab13:Slider({
+	Title = "Duration (ms)",
+	Flag = "Save11",
+	Value = { Default = 50, Max = 500, Min = 10 },
+	Callback = function() end,
+})
+Tab13:Slider({
+	Title = "Delay (ms)",
+	Flag = "Save12",
+	Value = { Default = 0, Max = 200, Min = 0 },
+	Callback = function() end,
+})
+local Players4 = game:GetService("Players")
+local RunService2 = game:GetService("RunService")
+Players4.PlayerRemoving:Connect(function() end)
+Players4.PlayerAdded:Connect(function(player)
+	player.CharacterAdded:Connect(function()
+		wait(0.1)
+	end)
+end)
+Players3.LocalPlayer.CharacterAdded:Connect(function(character) end)
+RunService2.Heartbeat:Connect(function()
+	character:WaitForChild("Humanoid").UseJumpPower = true
+	character:WaitForChild("Humanoid").JumpHeight = 7.2
+	Workspace.Gravity = 192.6
+	Workspace.CurrentCamera.FieldOfView = 70
+	Workspace:SetAttribute("NoDashCooldown", false)
+	Workspace:SetAttribute("NoFatigue", false)
+	Players3.LocalPlayer:SetAttribute("ExtraSlots", false)
+	Players3.LocalPlayer:SetAttribute("EmoteSearchBar", false)
+end)
+task.spawn(function()
+	task.wait(3)
+end)
+Players3.LocalPlayer.CharacterAdded:Connect(function()
+	task.wait(2)
+end)
+task.spawn(function() end)
+Players3.LocalPlayer.CharacterAdded:Connect(function()
+	task.wait(0.5)
+end)
+Players3.LocalPlayer:GetAttribute("AutoLockJumpEnabled")
+local Attribute2 = Players3.LocalPlayer:GetAttribute("AutoLockJumpEnabled")
+Players3.LocalPlayer:GetAttribute("AutoLockJumpResponsiveness")
+task.spawn(function()
+	task.wait(0)
+	Players3.LocalPlayer:GetAttribute("AutoLockJumpResponsiveness")
+	Players3.LocalPlayer:GetAttribute("AutoLockJumpResponsiveness")
+end)
+Players3.LocalPlayer.CharacterAdded:Connect(function()
+	task.wait(0.5)
+end)
+UserInputService.InputBegan:Connect(function() end)
+Players3.LocalPlayer.CharacterAdded:Connect(function()
+	task.wait(0.5)
+end)
+local Players5 = game:GetService("Players")
+Players5.LocalPlayer.CharacterAdded:Connect(function()
+	task.delay(0.25, function() end)
+end)
+Tab:Paragraph({
+	Title = "Supa Tech",
+	Color = Color3.fromHex("#ff6b6b"),
+	Desc = "Dash in them",
+	Image = "lucide:sword",
+	ImageSize = 20,
+})
+Tab:Toggle({
+	Title = "Enable Feature",
+	Flag = "Save13",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection28 = RunService2.Heartbeat:Connect(function()
+				Players5.LocalPlayer.Character:FindFirstChild("Humanoid"):GetPlayingAnimationTracks()
+			end)
+		else
+			connection28:Disconnect()
+		end
+	end,
+})
+Tab:Toggle({
+	Title = "Helper",
+	Desc = "Use this to headtab",
+	Flag = "Save14",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection29 = Players5.LocalPlayer.Character
+				:FindFirstChild("Humanoid").AnimationPlayed
+				:Connect(function(arg1)
+					local match = tostring(arg1.Animation.AnimationId):match("(%d+)")
+				end)
+			local connection31 = Players5.LocalPlayer.CharacterAdded:Connect(function()
+				task.wait(0.9)
+				connection29:Disconnect()
+				local connection30 = Players5.LocalPlayer.Character
+					:FindFirstChild("Humanoid").AnimationPlayed
+					:Connect(function(arg1)
+						local match2 = tostring(arg1.Animation.AnimationId):match("(%d+)")
+					end)
+			end)
+			WindUI:Notify({
+				Title = "Upper Grasp",
+				Content = "Enabled - Will trigger on dash animations",
+				Duration = 3,
+				Icon = "lucide:hand",
+			})
+		else
+			connection30:Disconnect()
+			connection31:Disconnect()
+			WindUI:Notify({ Title = "Upper Grasp", Content = "Disabled", Duration = 2, Icon = "lucide:hand" })
+		end
+	end,
+})
+Tab:Slider({
+	Title = "Supa Delay (ms)",
+	Flag = "Save15",
+	Value = { Default = 250, Max = 500, Min = 0 },
+	Callback = function(Value) end,
+})
+Tab:Slider({
+	Title = "Supa Speed (x10)",
+	Flag = "Save16",
+	Value = { Default = 10, Max = 25, Min = 5 },
+	Callback = function(Value) end,
+})
+Tab2:Paragraph({
+	Title = "Hook Dash",
+	Color = Color3.fromHex("#ff6b6b"),
+	Desc = "Side dash like a pro !(V to choose target C to do hook dash, if ur mobile double tap on someone)",
+	Image = "geist:anchor",
+	ImageSize = 20,
+})
+Tab2:Toggle({
+	Title = "Enable Hook Dash",
+	Flag = "Save17",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local UserInputService2 = game:GetService("UserInputService")
+			local UserInputService3 = game:GetService("UserInputService")
+			local PropertyChangedSignal =
+				game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("AutoRotate")
+			PropertyChangedSignal:Connect(function() end)
+			local connection34 = game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
+				local PropertyChangedSignal2 = character:WaitForChild("Humanoid"):GetPropertyChangedSignal("AutoRotate")
+				local connection33 = PropertyChangedSignal2:Connect(function() end)
+			end)
+			local connection35 = game.Players.PlayerRemoving:Connect(function() end)
+			local RunService3 = game:GetService("RunService")
+			local connection36 = RunService3.Heartbeat:Connect(function() end)
+			local connection37 = UserInputService3.InputBegan:Connect(function() end)
+			local connection38 = UserInputService2.InputBegan:Connect(function() end)
+			WindUI:Notify({ Title = "Side Dash Assist", Content = "Enabled", Duration = 2 })
+		else
+			connection37:Disconnect()
+			connection33:Disconnect()
+			connection38:Disconnect()
+			connection36:Disconnect()
+			connection35:Disconnect()
+			connection34:Disconnect()
+			game.Players.LocalPlayer.Character.Humanoid.AutoRotate = true
+			WindUI:Notify({ Title = "Side Dash Assist", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab2:Colorpicker({
+	Title = "Target Color",
+	Default = Color3.fromRGB(173, 216, 230),
+	Desc = "Pick the highlight color",
+	Flag = "Save18",
+	Locked = false,
+	Transparency = 0,
+	Callback = function(Value)
+		WindUI:Notify({ Title = "SideDash", Content = "Target color updated", Duration = 1 })
+	end,
+})
+Tab2:Toggle({ Title = "Mobile Mode", Flag = "Save19", Value = false, Callback = function() end })
+Tab2:Toggle({ Title = "Show Highlight", Value = true, Callback = function() end })
+Tab2:Paragraph({
+	Title = "Sorry !",
+	Color = Color3.fromHex("#ff6b6b"),
+	Desc = "Other configs will come in feture updates !",
+	Image = "geist:anchor",
+	ImageSize = 20,
+})
+Tab3:Paragraph({
+	Title = "Loop Dash",
+	Color = Color3.fromHex("#4ecdc4"),
+	Desc = "Do a loop while dashing",
+	Image = "lucide:refresh-ccw-dot",
+	ImageSize = 20,
+})
+Tab3:Toggle({
+	Title = "Enable Feature",
+	Flag = "Save20",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection39 = RunService2.Heartbeat:Connect(function()
+				Players5.LocalPlayer.Character:FindFirstChild("Humanoid"):GetPlayingAnimationTracks()
+			end)
+		else
+			connection39:Disconnect()
+		end
+	end,
+})
+Tab3:Slider({
+	Title = "Loop Delay ",
+	Flag = "Save21",
+	Value = { Default = 160, Max = 500, Min = 0 },
+	Callback = function(Value) end,
+})
+Tab3:Slider({
+	Title = "Loop Radius",
+	Flag = "Save22",
+	Value = { Default = 6, Max = 10, Min = 2 },
+	Callback = function(Value) end,
+})
+Tab4:Paragraph({
+	Title = "Loop Dash v2 / Rework",
+	Color = Color3.fromHex("#4ecdc4"),
+	Desc = "Just better loop dash, can also be used for oreo tech !",
+	Image = "lucide:refresh-ccw-dot",
+	ImageSize = 20,
+})
+Tab4:Toggle({
+	Title = "LoopDash v2 Enabled",
+	Flag = "Save23",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection40 = Players5.LocalPlayer.Character
+				:FindFirstChildOfClass("Humanoid").AnimationPlayed
+				:Connect(function(arg1)
+					tostring(arg1.Animation.AnimationId):find("10503381238", 1, true)
+					task.spawn(function()
+						while true do
+							RunService2.Heartbeat:Wait()
+						end
+					end)
+				end)
+			local connection41 = RunService2.Heartbeat:Connect(function(deltaTime) end)
+			local connection43 = Players5.LocalPlayer.CharacterAdded:Connect(function()
+				task.wait(1)
+				connection40:Disconnect()
+				local connection42 = Players5.LocalPlayer.Character
+					:FindFirstChildOfClass("Humanoid").AnimationPlayed
+					:Connect(function() end)
+			end)
+			local connection44 = Players5.LocalPlayer.CharacterAdded:Connect(function(character)
+				task.wait(1)
+			end)
+			WindUI:Notify({ Title = "LoopDash v2", Content = "ENABLED", Duration = 2, Icon = "lucide:check" })
+		else
+			connection42:Disconnect()
+			connection41:Disconnect()
+			connection43:Disconnect()
+			Players5.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").AutoRotate = true
+			WindUI:Notify({ Title = "LoopDash v2", Content = "DISABLED", Duration = 2, Icon = "lucide:x" })
+		end
+	end,
+})
+Tab4:Toggle({
+	Title = "Jump Assist",
+	Desc = "Use this for oreo tech !",
+	Flag = "Save24",
+	Callback = function(Value)
+		if Value then
+		else
+			connection44:Disconnect()
+		end
+	end,
+})
+Tab4:Slider({
+	Title = "Jump hight",
+	Flag = "Save25",
+	Value = { Default = 52, Max = 100, Min = 10 },
+	Callback = function() end,
+})
+Tab4:Slider({ Title = "Delay ", Flag = "Save26", Value = { Default = 3, Max = 10, Min = 0 }, Callback = function() end })
+Tab4:Slider({
+	Title = "First Flick Delay",
+	Flag = "Save27",
+	Value = { Default = 1, Max = 10, Min = 0 },
+	Callback = function() end,
+})
+Tab4:Slider({
+	Title = "Smoothness",
+	Flag = "Save28",
+	Value = { Default = 600, Max = 1000, Min = 1 },
+	Callback = function() end,
+})
+Tab6:Paragraph({
+	Title = "Auto Kyoto tech!",
+	Color = Color3.fromHex("#052f8a"),
+	Desc = "Flowing water into lethal",
+	Image = "lucide:step-forward",
+	ImageSize = 20,
+})
+Tab6:Toggle({
+	Title = "Auto Kyoto",
+	Flag = "Save29",
+	Callback = function(Value)
+		if Value then
+			local connection45 = RunService2.Heartbeat:Connect(function()
+				Players5.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks()
+			end)
+		else
+			connection45:Disconnect()
+		end
+	end,
+})
+Tab6:Slider({ Title = "Distance", Flag = "Save30", Value = { Max = 50, Min = 0 }, Callback = function(Value) end })
+Tab6:Slider({
+	Title = "Delay",
+	Flag = "Save31",
+	Value = { Default = 0, Max = 1000, Min = 1 },
+	Callback = function(Value) end,
+})
+Tab6:Toggle({
+	Title = "Auto Hunter Surf",
+	Flag = "Save32",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection46 = RunService2.RenderStepped:Connect(function()
+				Players5.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks()
+			end)
+			local connection47 = Players5.LocalPlayer.CharacterAdded:Connect(function()
+				task.wait(1)
+			end)
+		else
+			connection47:Disconnect()
+			connection46:Disconnect()
+		end
+	end,
+})
+Tab7:Paragraph({
+	Title = "Lethal Dash",
+	Color = Color3.fromHex("#eb4d4b"),
+	Desc = "Lethal water into a dash",
+	Flag = "Save33",
+	Image = "geist:arrow-up-down",
+	ImageSize = 20,
+})
+Tab7:Toggle({
+	Title = "Enable LethalDash",
+	Flag = "Save34",
+	Value = Attribute2,
+	Callback = function(Value)
+		if Value then
+			local connection48 = Players5.LocalPlayer.CharacterAdded:Connect(function()
+				task.wait(0)
+				Players5.LocalPlayer:GetAttribute("AutoLockJumpEnabled")
+				Players5.LocalPlayer:GetAttribute("AutoLockJumpEnabled")
+			end)
+			local connection49 = Players5.LocalPlayer.CharacterRemoving:Connect(function()
+				Players5.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").AutoRotate = true
+			end)
+			Players5.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").AutoRotate = true
+			Players5.LocalPlayer:SetAttribute("AutoLockJumpEnabled", false)
+		else
+			connection48:Disconnect()
+			connection49:Disconnect()
+			Players5.LocalPlayer.CharacterAdded:Connect(function()
+				task.wait(0)
+				Players5.LocalPlayer:GetAttribute("AutoLockJumpEnabled")
+				Players5.LocalPlayer:GetAttribute("AutoLockJumpEnabled")
+			end)
+			Players5.LocalPlayer.CharacterRemoving:Connect(function()
+				Players5.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").AutoRotate = true
+			end)
+			Players5.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").AutoRotate = true
+			Players5.LocalPlayer:SetAttribute("AutoLockJumpEnabled", false)
+		end
+	end,
+})
+Tab7:Slider({
+	Title = "First flick delay",
+	Flag = "Save35",
+	Value = { Default = 1, Max = 10, Min = 0 },
+	Callback = function(Value) end,
+})
+Tab7:Slider({
+	Title = "Smoothness",
+	Flag = "Save36",
+	Value = { Default = 300, Max = 1000, Min = 20 },
+	Callback = function(Value) end,
+})
+Tab7:Toggle({
+	Title = "Auto Lethal Dunk",
+	Flag = "Save37",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection52 = RunService2.RenderStepped:Connect(function()
+				Players5.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):GetPlayingAnimationTracks()
+			end)
+		else
+			connection52:Disconnect()
+		end
+	end,
+})
+Tab8:Button({
+	Title = "Execute M1 Reset Script",
+	Icon = "zap",
+	Callback = function()
+		local Players7 = game:GetService("Players")
+		local UserInputService4 = game:GetService("UserInputService")
+		local TweenService3 = game:GetService("TweenService")
+		local RunService4 = game:GetService("RunService")
+		local Workspace2 = game:GetService("Workspace")
+		getgenv().connections = {}
+		getgenv().connections = {}
+		gethui():FindFirstChild("M1_RESET_UI"):Destroy()
+		gethui():FindFirstChild("TSB_UI"):Destroy()
+		gethui():FindFirstChild("M1ResetUI"):Destroy()
+		local ScreenGui2 = Instance.new("ScreenGui")
+		ScreenGui2.Name = "M1_RESET_UI"
+		ScreenGui2.ResetOnSpawn = false
+		ScreenGui2.IgnoreGuiInset = true
+		ScreenGui2.DisplayOrder = 9999
+		ScreenGui2.ZIndexBehavior = Enum.ZIndexBehavior.Global
+		ScreenGui2.Parent = Players7.LocalPlayer:FindFirstChild("PlayerGui")
+		local Frame5 = Instance.new("Frame", ScreenGui2)
+		Frame5.Size = UDim2.fromOffset(300, 160)
+		Frame5.Position = UDim2.new(0.5, -150, 0.1, -200)
+		Frame5.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+		Frame5.BackgroundTransparency = 0.15
+		local UICorner4 = Instance.new("UICorner")
+		UICorner4.CornerRadius = UDim.new(0, 14)
+		UICorner4.Parent = Frame5
+		local UIStroke3 = Instance.new("UIStroke")
+		UIStroke3.Color = Color3.fromRGB(200, 200, 200)
+		UIStroke3.Thickness = 1
+		UIStroke3.Transparency = 0.5
+		UIStroke3.Parent = Frame5
+		local TextLabel5 = Instance.new("TextLabel", Frame5)
+		TextLabel5.Size = UDim2.fromScale(1, 1)
+		TextLabel5.BackgroundTransparency = 1
+		TextLabel5.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel5.Font = Enum.Font.GothamBold
+		TextLabel5.TextSize = 20
+		TextLabel5.TextWrapped = true
+		TextLabel5.Text = "M1 Reset by dovi!\nKeybinds: R = M1 Reset | T = Emote Dash"
+		local Create11 = TweenService3:Create(
+			Frame5,
+			TweenInfo.new(0.5, Enum.EasingStyle.Bounce, Enum.EasingDirection.Out),
+			{ Position = UDim2.new(0.5, -150, 0.1, 0) }
+		)
+		Create11:Play()
+		task.delay(4, function()
+			local Create12 = TweenService3:Create(
+				Frame5,
+				TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
+				{ Position = UDim2.new(0.5, -150, 0.1, -200) }
+			)
+			Create12:Play()
+			task.wait(0.4)
+			Frame5:Destroy()
+		end)
+		local Frame6 = Instance.new("Frame", ScreenGui2)
+		Frame6.Size = UDim2.new(0, 190, 0, 200)
+		Frame6.Position = UDim2.new(0, 20, 0.5, 0)
+		Frame6.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+		Frame6.BackgroundTransparency = 1
+		local UICorner5 = Instance.new("UICorner")
+		UICorner5.CornerRadius = UDim.new(0, 16)
+		UICorner5.Parent = Frame6
+		local UIStroke4 = Instance.new("UIStroke")
+		UIStroke4.Color = Color3.fromRGB(200, 200, 200)
+		UIStroke4.Thickness = 1
+		UIStroke4.Transparency = 0.5
+		UIStroke4.Parent = Frame6
+		local Create13 = TweenService3:Create(Frame6, TweenInfo.new(0.4), { BackgroundTransparency = 0.2 })
+		Create13:Play()
+		Frame6.InputBegan:Connect(function() end)
+		Frame6.InputChanged:Connect(function() end)
+		RunService4.RenderStepped:Connect(function() end)
+		local Frame7 = Instance.new("Frame", Frame6)
+		Frame7.Size = UDim2.new(1, 0, 0, 34)
+		Frame7.BackgroundTransparency = 1
+		local TextLabel6 = Instance.new("TextLabel", Frame7)
+		TextLabel6.Size = UDim2.new(1, -130, 1, 0)
+		TextLabel6.Position = UDim2.new(0, 12, 0, 0)
+		TextLabel6.BackgroundTransparency = 1
+		TextLabel6.Text = "M1 reset by dovi!"
+		TextLabel6.Font = Enum.Font.GothamBlack
+		TextLabel6.TextSize = 16
+		TextLabel6.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel6.TextXAlignment = Enum.TextXAlignment.Left
+		local TextButton3 = Instance.new("TextButton", Frame7)
+		TextButton3.Size = UDim2.new(0, 100, 0, 30)
+		TextButton3.Position = UDim2.new(1, -110, 0.5, -15)
+		TextButton3.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+		TextButton3.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextButton3.Font = Enum.Font.GothamBold
+		TextButton3.TextSize = 14
+		TextButton3.Text = "Theme: Dark"
+		local UICorner6 = Instance.new("UICorner")
+		UICorner6.CornerRadius = UDim.new(0, 10)
+		UICorner6.Parent = TextButton3
+		local UIStroke5 = Instance.new("UIStroke")
+		UIStroke5.Color = Color3.fromRGB(200, 200, 200)
+		UIStroke5.Thickness = 1
+		UIStroke5.Transparency = 0.5
+		UIStroke5.Parent = TextButton3
+		TextButton3.MouseButton1Click:Connect(function()
+			TextButton3.Text = "Theme: Gray"
+			local descendants = ScreenGui2:GetDescendants()
+			for _, v9 in ipairs(descendants) do
+				v9.TextColor3 = Color3.fromRGB(255, 255, 255)
+				v9.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+				v9.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+				v9:FindFirstChildOfClass("UIStroke").Color = Color3.fromRGB(150, 150, 150)
+			end
+		end)
+		local TextButton4 = Instance.new("TextButton", Frame6)
+		TextButton4.Size = UDim2.new(1, -24, 0, 44)
+		TextButton4.Position = UDim2.new(0, 12, 0, 54)
+		TextButton4.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+		TextButton4.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextButton4.Font = Enum.Font.GothamBold
+		TextButton4.TextSize = 16
+		TextButton4.Text = "M1 Reset"
+		local UICorner7 = Instance.new("UICorner")
+		UICorner7.CornerRadius = UDim.new(0, 12)
+		UICorner7.Parent = TextButton4
+		local UIStroke6 = Instance.new("UIStroke")
+		UIStroke6.Color = Color3.fromRGB(150, 150, 150)
+		UIStroke6.Thickness = 1
+		UIStroke6.Transparency = 0.5
+		UIStroke6.Parent = TextButton4
+		TextButton4.AutoButtonColor = false
+		TextButton4.MouseEnter:Connect(function()
+			local Create14 = TweenService3:Create(
+				TextButton4,
+				TweenInfo.new(0.15),
+				{ BackgroundColor3 = Color3.fromRGB(150, 150, 150), Size = UDim2.new(1, -22, 0, 46) }
+			)
+			Create14:Play()
+		end)
+		TextButton4.MouseLeave:Connect(function()
+			local Create15 = TweenService3:Create(
+				TextButton4,
+				TweenInfo.new(0.15),
+				{ BackgroundColor3 = Color3.fromRGB(80, 80, 80), Size = UDim2.new(1, -24, 0, 44) }
+			)
+			Create15:Play()
+		end)
+		TextButton4.MouseButton1Down:Connect(function()
+			local Create16 = TweenService3:Create(TextButton4, TweenInfo.new(0.1), { Size = UDim2.new(1, -26, 0, 42) })
+			Create16:Play()
+		end)
+		TextButton4.MouseButton1Up:Connect(function()
+			local Create17 = TweenService3:Create(TextButton4, TweenInfo.new(0.1), { Size = UDim2.new(1, -22, 0, 46) })
+			Create17:Play()
+		end)
+		TextButton4.MouseButton1Click:Connect(function()
+			task.spawn(function()
+				local PlayingAnimationTracks6 = Players7.LocalPlayer.Character
+					:FindFirstChildOfClass("Humanoid")
+					:FindFirstChildOfClass("Animator")
+					:GetPlayingAnimationTracks()
+				for _, v10 in ipairs(PlayingAnimationTracks6) do
+					v10:Stop()
+				end
+				local Animation = Instance.new("Animation")
+				Animation.AnimationId = "rbxassetid://10480793962"
+				local LoadAnimation = Players7.LocalPlayer.Character
+					:FindFirstChildOfClass("Humanoid")
+					:FindFirstChildOfClass("Animator")
+					:LoadAnimation(Animation)
+				LoadAnimation.Priority = Enum.AnimationPriority.Action
+				LoadAnimation:Play()
+				LoadAnimation:AdjustSpeed(1.2)
+				local Create18 = TweenService3:Create(
+					Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"),
+					TweenInfo.new(0.22, Enum.EasingStyle.Sine, Enum.EasingDirection.Out),
+					{
+						CFrame = (
+							Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame
+							* CFrame.new(26, 0, 0)
+						),
+					}
+				)
+				Create18:Play()
+				Create18.Completed:Wait()
+				Create18:Destroy()
+				Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = (
+					Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame
+					* CFrame.Angles(0, 1.221730476, 0)
+				)
+				Workspace2.CurrentCamera.CFrame = CFrame.lookAt(
+					Vector3.new(
+						(
+							Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+							+ (
+								CFrame.fromAxisAngle(Vector3.yAxis, 1.221730476)
+								* Vector3.new(
+									(
+										Workspace2.CurrentCamera.CFrame.Position
+										- Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+									).X,
+									0,
+									(
+										Workspace2.CurrentCamera.CFrame.Position
+										- Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+									).Z
+								)
+							)
+						).X,
+						Workspace2.CurrentCamera.CFrame.Position.Y,
+						(
+							Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+							+ (
+								CFrame.fromAxisAngle(Vector3.yAxis, 1.221730476)
+								* Vector3.new(
+									(
+										Workspace2.CurrentCamera.CFrame.Position
+										- Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+									).X,
+									0,
+									(
+										Workspace2.CurrentCamera.CFrame.Position
+										- Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+									).Z
+								)
+							)
+						).Z
+					),
+					Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+				)
+				task.wait(0.003)
+			end)
+		end)
+		local TextButton5 = Instance.new("TextButton", Frame6)
+		TextButton5.Size = UDim2.new(1, -24, 0, 44)
+		TextButton5.Position = UDim2.new(0, 12, 0, 104)
+		TextButton5.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+		TextButton5.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextButton5.Font = Enum.Font.GothamBold
+		TextButton5.TextSize = 16
+		TextButton5.Text = "Emote Dash"
+		local UICorner8 = Instance.new("UICorner")
+		UICorner8.CornerRadius = UDim.new(0, 12)
+		UICorner8.Parent = TextButton5
+		local UIStroke7 = Instance.new("UIStroke")
+		UIStroke7.Color = Color3.fromRGB(150, 150, 150)
+		UIStroke7.Thickness = 1
+		UIStroke7.Transparency = 0.5
+		UIStroke7.Parent = TextButton5
+		TextButton5.AutoButtonColor = false
+		TextButton5.MouseEnter:Connect(function()
+			local Create19 = TweenService3:Create(
+				TextButton5,
+				TweenInfo.new(0.15),
+				{ BackgroundColor3 = Color3.fromRGB(150, 150, 150), Size = UDim2.new(1, -22, 0, 46) }
+			)
+			Create19:Play()
+		end)
+		TextButton5.MouseLeave:Connect(function()
+			local Create20 = TweenService3:Create(
+				TextButton5,
+				TweenInfo.new(0.15),
+				{ BackgroundColor3 = Color3.fromRGB(80, 80, 80), Size = UDim2.new(1, -24, 0, 44) }
+			)
+			Create20:Play()
+		end)
+		TextButton5.MouseButton1Down:Connect(function()
+			local Create21 = TweenService3:Create(TextButton5, TweenInfo.new(0.1), { Size = UDim2.new(1, -26, 0, 42) })
+			Create21:Play()
+		end)
+		TextButton5.MouseButton1Up:Connect(function()
+			local Create22 = TweenService3:Create(TextButton5, TweenInfo.new(0.1), { Size = UDim2.new(1, -22, 0, 46) })
+			Create22:Play()
+		end)
+		TextButton5.MouseButton1Click:Connect(function()
+			task.spawn(function()
+				local PlayingAnimationTracks7 = Players7.LocalPlayer.Character
+					:FindFirstChildOfClass("Humanoid")
+					:FindFirstChildOfClass("Animator")
+					:GetPlayingAnimationTracks()
+				for _, v11 in ipairs(PlayingAnimationTracks7) do
+					v11:Stop()
+				end
+				local LoadAnimation2 = Players7.LocalPlayer.Character
+					:FindFirstChildOfClass("Humanoid")
+					:FindFirstChildOfClass("Animator")
+					:LoadAnimation(Animation)
+				LoadAnimation2.Priority = Enum.AnimationPriority.Action
+				LoadAnimation2:Play()
+				LoadAnimation2:AdjustSpeed(1.2)
+				Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = (
+					Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame
+					* CFrame.Angles(0, 1.570796327, 0)
+				)
+				Workspace2.CurrentCamera.CFrame = CFrame.lookAt(
+					Vector3.new(
+						(
+							Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+							+ (
+								CFrame.fromAxisAngle(Vector3.yAxis, 1.570796327)
+								* Vector3.new(
+									(
+										Workspace2.CurrentCamera.CFrame.Position
+										- Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+									).X,
+									0,
+									(
+										Workspace2.CurrentCamera.CFrame.Position
+										- Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+									).Z
+								)
+							)
+						).X,
+						Workspace2.CurrentCamera.CFrame.Position.Y,
+						(
+							Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+							+ (
+								CFrame.fromAxisAngle(Vector3.yAxis, 1.570796327)
+								* Vector3.new(
+									(
+										Workspace2.CurrentCamera.CFrame.Position
+										- Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+									).X,
+									0,
+									(
+										Workspace2.CurrentCamera.CFrame.Position
+										- Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+									).Z
+								)
+							)
+						).Z
+					),
+					Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+				)
+				local BodyVelocity = Instance.new("BodyVelocity")
+				BodyVelocity.Velocity = (
+					(
+						(
+							(Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame.RightVector * 1)
+							* 38
+						) + Vector3.new(0, 8, 0)
+					).Unit * 95
+				)
+				BodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+				BodyVelocity.Parent = Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+				task.delay(0.27, function()
+					BodyVelocity:Destroy()
+				end)
+			end)
+		end)
+		local TextButton6 = Instance.new("TextButton", Frame6)
+		TextButton6.Size = UDim2.new(1, -24, 0, 44)
+		TextButton6.Position = UDim2.new(0, 12, 0, 154)
+		TextButton6.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+		TextButton6.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextButton6.Font = Enum.Font.GothamBold
+		TextButton6.TextSize = 16
+		TextButton6.Text = "Unload"
+		local UICorner9 = Instance.new("UICorner")
+		UICorner9.CornerRadius = UDim.new(0, 12)
+		UICorner9.Parent = TextButton6
+		local UIStroke8 = Instance.new("UIStroke")
+		UIStroke8.Color = Color3.fromRGB(150, 150, 150)
+		UIStroke8.Thickness = 1
+		UIStroke8.Transparency = 0.5
+		UIStroke8.Parent = TextButton6
+		TextButton6.AutoButtonColor = false
+		TextButton6.MouseEnter:Connect(function()
+			local Create23 = TweenService3:Create(
+				TextButton6,
+				TweenInfo.new(0.15),
+				{ BackgroundColor3 = Color3.fromRGB(150, 150, 150), Size = UDim2.new(1, -22, 0, 46) }
+			)
+			Create23:Play()
+		end)
+		TextButton6.MouseLeave:Connect(function()
+			local Create24 = TweenService3:Create(
+				TextButton6,
+				TweenInfo.new(0.15),
+				{ BackgroundColor3 = Color3.fromRGB(80, 80, 80), Size = UDim2.new(1, -24, 0, 44) }
+			)
+			Create24:Play()
+		end)
+		TextButton6.MouseButton1Down:Connect(function()
+			local Create25 = TweenService3:Create(TextButton6, TweenInfo.new(0.1), { Size = UDim2.new(1, -26, 0, 42) })
+			Create25:Play()
+		end)
+		TextButton6.MouseButton1Up:Connect(function()
+			local Create26 = TweenService3:Create(TextButton6, TweenInfo.new(0.1), { Size = UDim2.new(1, -22, 0, 46) })
+			Create26:Play()
+		end)
+		TextButton6.MouseButton1Click:Connect(function()
+			task.spawn(function()
+				getgenv().connections = {}
+				ScreenGui2:Destroy()
+			end)
+		end)
+		local TextButton7 = Instance.new("TextButton", Frame6)
+		TextButton7.Size = UDim2.new(0, 100, 0, 30)
+		TextButton7.Position = UDim2.new(1, -110, 1, 5)
+		TextButton7.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+		TextButton7.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextButton7.Font = Enum.Font.GothamBold
+		TextButton7.TextSize = 14
+		TextButton7.Text = "Mobile: OFF"
+		local UICorner10 = Instance.new("UICorner")
+		UICorner10.CornerRadius = UDim.new(0, 10)
+		UICorner10.Parent = TextButton7
+		local UIStroke9 = Instance.new("UIStroke")
+		UIStroke9.Color = Color3.fromRGB(150, 150, 150)
+		UIStroke9.Thickness = 1
+		UIStroke9.Transparency = 0.5
+		UIStroke9.Parent = TextButton7
+		TextButton7.MouseButton1Click:Connect(function()
+			TextButton7.Text = "Mobile: ON"
+			local Create27 = TweenService3:Create(Frame6, TweenInfo.new(0.3), { Size = UDim2.new(0, 160, 0, 100) })
+			Create27:Play()
+			Frame6.Position = UDim2.new(0, 20, 0.6, 0)
+			TextButton4.Visible = false
+			TextButton5.Visible = false
+			local Create28 =
+				TweenService3:Create(TextButton6, TweenInfo.new(0.3), { Position = UDim2.new(0, 12, 0, 54) })
+			Create28:Play()
+			task.wait(0.1)
+			local TextButton8 = Instance.new("TextButton", ScreenGui2)
+			TextButton8.Size = UDim2.new(0, 140, 0, 45)
+			TextButton8.Position = UDim2.new(
+				0,
+				math.clamp(20, 12, (Workspace2.CurrentCamera.ViewportSize.X - 150)),
+				0,
+				math.clamp(
+					(Workspace2.CurrentCamera.ViewportSize.Y - 100),
+					12,
+					(Workspace2.CurrentCamera.ViewportSize.Y - 60)
+				)
+			)
+			TextButton8.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+			TextButton8.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextButton8.Font = Enum.Font.GothamBold
+			TextButton8.TextSize = 16
+			TextButton8.Text = "M1 Reset"
+			local UICorner11 = Instance.new("UICorner")
+			UICorner11.CornerRadius = UDim.new(0, 12)
+			UICorner11.Parent = TextButton8
+			local UIStroke10 = Instance.new("UIStroke")
+			UIStroke10.Color = Color3.fromRGB(150, 150, 150)
+			UIStroke10.Thickness = 1
+			UIStroke10.Transparency = 0.5
+			UIStroke10.Parent = TextButton8
+			TextButton8.ZIndex = 100
+			TextButton8.BackgroundTransparency = 1
+			TextButton8.TextTransparency = 1
+			local Create29 = TweenService3:Create(
+				TextButton8,
+				TweenInfo.new(0.3),
+				{ BackgroundTransparency = 0, TextTransparency = 0 }
+			)
+			Create29:Play()
+			TextButton8.MouseButton1Click:Connect(function()
+				local PlayingAnimationTracks8 = Players7.LocalPlayer.Character
+					:FindFirstChildOfClass("Humanoid")
+					:FindFirstChildOfClass("Animator")
+					:GetPlayingAnimationTracks()
+				for _, v12 in ipairs(PlayingAnimationTracks8) do
+					v12:Stop()
+				end
+				local LoadAnimation3 = Players7.LocalPlayer.Character
+					:FindFirstChildOfClass("Humanoid")
+					:FindFirstChildOfClass("Animator")
+					:LoadAnimation(Animation)
+				LoadAnimation3.Priority = Enum.AnimationPriority.Action
+				LoadAnimation3:Play()
+				LoadAnimation3:AdjustSpeed(1.2)
+				local Create30 = TweenService3:Create(
+					Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"),
+					TweenInfo.new(0.22, Enum.EasingStyle.Sine, Enum.EasingDirection.Out),
+					{
+						CFrame = (
+							Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame
+							* CFrame.new(26, 0, 0)
+						),
+					}
+				)
+				Create30:Play()
+				Create30.Completed:Wait()
+				Create30:Destroy()
+				Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame =
+					Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame
+				Workspace2.CurrentCamera.CFrame = Workspace2.CurrentCamera.CFrame
+				task.wait(0.003)
+			end)
+			TextButton8.InputBegan:Connect(function() end)
+			TextButton8.InputChanged:Connect(function() end)
+			RunService4.RenderStepped:Connect(function() end)
+			TextButton8.AncestryChanged:Connect(function() end)
+			task.wait(0.1)
+			local TextButton9 = Instance.new("TextButton", ScreenGui2)
+			TextButton9.Size = UDim2.new(0, 140, 0, 45)
+			TextButton9.Position = UDim2.new(
+				0,
+				math.clamp(170, 12, (Workspace2.CurrentCamera.ViewportSize.X - 150)),
+				0,
+				math.clamp(
+					(Workspace2.CurrentCamera.ViewportSize.Y - 100),
+					12,
+					(Workspace2.CurrentCamera.ViewportSize.Y - 60)
+				)
+			)
+			TextButton9.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+			TextButton9.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextButton9.Font = Enum.Font.GothamBold
+			TextButton9.TextSize = 16
+			TextButton9.Text = "Emote Dash"
+			local UICorner12 = Instance.new("UICorner")
+			UICorner12.CornerRadius = UDim.new(0, 12)
+			UICorner12.Parent = TextButton9
+			local UIStroke11 = Instance.new("UIStroke")
+			UIStroke11.Color = Color3.fromRGB(150, 150, 150)
+			UIStroke11.Thickness = 1
+			UIStroke11.Transparency = 0.5
+			UIStroke11.Parent = TextButton9
+			TextButton9.ZIndex = 100
+			TextButton9.BackgroundTransparency = 1
+			TextButton9.TextTransparency = 1
+			local Create31 = TweenService3:Create(
+				TextButton9,
+				TweenInfo.new(0.3),
+				{ BackgroundTransparency = 0, TextTransparency = 0 }
+			)
+			Create31:Play()
+			TextButton9.MouseButton1Click:Connect(function()
+				local PlayingAnimationTracks9 = Players7.LocalPlayer.Character
+					:FindFirstChildOfClass("Humanoid")
+					:FindFirstChildOfClass("Animator")
+					:GetPlayingAnimationTracks()
+				for _, v13 in ipairs(PlayingAnimationTracks9) do
+					v13:Stop()
+				end
+				local LoadAnimation4 = Players7.LocalPlayer.Character
+					:FindFirstChildOfClass("Humanoid")
+					:FindFirstChildOfClass("Animator")
+					:LoadAnimation(Animation)
+				LoadAnimation4.Priority = Enum.AnimationPriority.Action
+				LoadAnimation4:Play()
+				LoadAnimation4:AdjustSpeed(1.2)
+				Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame =
+					Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame
+				Workspace2.CurrentCamera.CFrame = CFrame.lookAt(
+					Vector3.new(
+						(
+							Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+							+ (
+								CFrame.fromAxisAngle(Vector3.yAxis, 1.570796327)
+								* Vector3.new(
+									(
+										Workspace2.CurrentCamera.CFrame.Position
+										- Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+									).X,
+									0,
+									(
+										Workspace2.CurrentCamera.CFrame.Position
+										- Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+									).Z
+								)
+							)
+						).X,
+						Workspace2.CurrentCamera.CFrame.Position.Y,
+						(
+							Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+							+ (
+								CFrame.fromAxisAngle(Vector3.yAxis, 1.570796327)
+								* Vector3.new(
+									(
+										Workspace2.CurrentCamera.CFrame.Position
+										- Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+									).X,
+									0,
+									(
+										Workspace2.CurrentCamera.CFrame.Position
+										- Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+									).Z
+								)
+							)
+						).Z
+					),
+					Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+				)
+				local BodyVelocity2 = Instance.new("BodyVelocity")
+				BodyVelocity2.Velocity = (
+					(
+						(
+							(Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame.RightVector * 1)
+							* 38
+						) + Vector3.new(0, 8, 0)
+					).Unit * 95
+				)
+				BodyVelocity2.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+				BodyVelocity2.Parent = Players7.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+				task.delay(0.27, function()
+					BodyVelocity2:Destroy()
+				end)
+			end)
+			TextButton9.InputBegan:Connect(function() end)
+			TextButton9.InputChanged:Connect(function() end)
+			RunService4.RenderStepped:Connect(function() end)
+			TextButton9.AncestryChanged:Connect(function() end)
+		end)
+		local descendants2 = ScreenGui2:GetDescendants()
+		for _, v14 in ipairs(descendants2) do
+			v14.TextColor3 = Color3.fromRGB(255, 255, 255)
+			v14.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+			v14.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+			v14:FindFirstChildOfClass("UIStroke").Color = Color3.fromRGB(150, 150, 150)
+		end
+		TextButton8.BackgroundColor3 = TextButton8.BackgroundColor3
+		TextButton8.TextColor3 = TextButton8.TextColor3
+		TextButton8:FindFirstChildOfClass("UIStroke").Color = Color3.fromRGB(150, 150, 150)
+		TextButton9.BackgroundColor3 = TextButton9.BackgroundColor3
+		TextButton9.TextColor3 = TextButton9.TextColor3
+		TextButton9:FindFirstChildOfClass("UIStroke").Color = Color3.fromRGB(150, 150, 150)
+		UserInputService4.InputBegan:Connect(function() end)
+	end,
+})
+Tab8:Toggle({
+	Title = "No End Lag",
+	Flag = "Save38",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection84 = Players5.LocalPlayer.Character
+				:FindFirstChildOfClass("Humanoid")
+				:FindFirstChildOfClass("Animator").AnimationPlayed
+				:Connect(function(arg1)
+					arg1.Animation.AnimationId:match("%d+")
+				end)
+			WindUI:Notify({ Title = "No End Lag", Content = "Enabled", Duration = 2 })
+		else
+			connection84:Disconnect()
+			WindUI:Notify({ Title = "No End Lag", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab9:Paragraph({
+	Title = "Instant Twisted",
+	Color = Color3.fromHex("#00b894"),
+	Desc = "4m1 into a dash",
+	Image = "lucide:corner-up-right",
+	ImageSize = 20,
+})
+Tab9:Toggle({
+	Title = "Enable Instant Twisted",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			loadstring(
+				game:HttpGet(
+					"https://raw.githubusercontent.com/Cyborg883/InstantTwistedRevamp/main/Protected_7455521176683315.lua"
+				)
+			)()
+		else
+		end
+	end,
+})
+Tab9:Toggle({
+	Title = "Normal twisted",
+	Flag = "Save39",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			Players5.LocalPlayer.Character:WaitForChild("Humanoid").AnimationPlayed:Connect(function() end)
+			local connection87 = Players5.LocalPlayer.CharacterAdded:Connect(function()
+				task.wait(1)
+				local connection86 = Players5.LocalPlayer.Character
+					:WaitForChild("Humanoid").AnimationPlayed
+					:Connect(function() end)
+			end)
+		else
+			connection86:Disconnect()
+			connection87:Disconnect()
+		end
+	end,
+})
+Tab12:Paragraph({
+	Title = "Auto Counter",
+	Color = Color3.fromHex("#0984e3"),
+	Desc = "Automatically counter attacks",
+	Image = "lucide:shield",
+	ImageSize = 20,
+})
+Tab12:Toggle({
+	Title = "Enable Feature",
+	Flag = "Save40",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection88 = RunService2.Heartbeat:Connect(function()
+				local children3 = workspace.Live:GetChildren()
+				for _, v15 in ipairs(children3) do
+					local PlayingAnimationTracks10 = v15:FindFirstChildOfClass("Humanoid")
+						:FindFirstChildOfClass("Animator")
+						:GetPlayingAnimationTracks()
+					local DebugId = v15:GetDebugId()
+					for _, v16 in ipairs(PlayingAnimationTracks10) do
+					end
+				end
+			end)
+		else
+			connection88:Disconnect()
+		end
+	end,
+})
+Tab12:Slider({
+	Title = "Counter Distance",
+	Flag = "Save41",
+	Value = { Default = 13, Max = 20, Min = 5 },
+	Callback = function(Value) end,
+})
+Tab11:Paragraph({
+	Title = "Kiba Tech",
+	Color = Color3.fromHex("#ff6b6b"),
+	Desc = "uhh dash and look up...idk :3",
+	Image = "lucide:crosshair",
+	ImageSize = 20,
+})
+Tab11:Toggle({
+	Title = "Enable Kiba Tech",
+	Flag = "Save42",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local children4 = Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"):GetChildren()
+			for _, v17 in ipairs(children4) do
+				v17:Destroy()
+			end
+			local connection89 = Players5.LocalPlayer.Character
+				:FindFirstChildOfClass("Humanoid").AnimationPlayed
+				:Connect(function(arg1) end)
+		else
+			local children5 = Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"):GetChildren()
+			for _, v18 in ipairs(children5) do
+				v18:Destroy()
+			end
+			connection89:Disconnect()
+		end
+	end,
+})
+Tab14:Paragraph({
+	Title = "Tech Helper",
+	Color = Color3.fromHex("#a29bfe"),
+	Desc = "helps with techs....duhh",
+	Image = "lucide:hand-helping",
+	ImageSize = 20,
+})
+Tab14:Toggle({
+	Title = "Enable Feature",
+	Flag = "Save43",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local players2 = Players5:GetPlayers()
+			for _, v19 in ipairs(players2) do
+				v19.Character:FindFirstChildOfClass("Humanoid").AnimationPlayed:Connect(function(arg1)
+					task.wait(0.3)
+				end)
+				v19.Character.ChildAdded:Connect(function(child)
+					child.AnimationPlayed:Connect(function(arg1)
+						task.wait(0.3)
+					end)
+				end)
+				v19.CharacterAdded:Connect(function(character)
+					character:FindFirstChildOfClass("Humanoid").AnimationPlayed:Connect(function(arg1)
+						task.wait(0.3)
+					end)
+					character.ChildAdded:Connect(function(child)
+						child.AnimationPlayed:Connect(function(arg1)
+							task.wait(0.3)
+						end)
+					end)
+				end)
+			end
+			Players5.PlayerAdded:Connect(function(player)
+				player.CharacterAdded:Connect(function(character)
+					character:FindFirstChildOfClass("Humanoid").AnimationPlayed:Connect(function(arg1)
+						task.wait(0.3)
+					end)
+					character.ChildAdded:Connect(function(child)
+						child.AnimationPlayed:Connect(function(...) end)
+					end)
+				end)
+			end)
+			Players5.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").AnimationPlayed:Connect(function(arg1)
+				task.wait(0.3)
+			end)
+			Players5.LocalPlayer.Character.ChildAdded:Connect(function(child)
+				child.AnimationPlayed:Connect(function(arg1)
+					task.wait(0.3)
+				end)
+			end)
+		else
+		end
+	end,
+})
+Tab14:Slider({
+	Title = "Tech Helper Delay (ms)",
+	Flag = "Save44",
+	Value = { Default = 300, Max = 500, Min = 100 },
+	Callback = function(Value) end,
+})
+Tab14:Slider({
+	Title = "Tech Helper Hold (ms)",
+	Flag = "Save45",
+	Value = { Default = 150, Max = 500, Min = 50 },
+	Callback = function(Value) end,
+})
+Tab14:Toggle({ Title = "Tech Helper Look Up", Flag = "Save46", Value = true, Callback = function() end })
+Tab14:Slider({
+	Title = "Tech Helper Lock Percentage",
+	Value = { Default = 50, Max = 100, Min = 0 },
+	Callback = function(Value) end,
+})
+Tab14:Divider()
+Tab14:Toggle({
+	Title = "Enable M1 Catch",
+	Flag = "Save47",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection105 = RunService2.Heartbeat:Connect(function()
+				OverlapParams.new().FilterType = Enum.RaycastFilterType.Exclude
+				OverlapParams.new().FilterDescendantsInstances = { Players5.LocalPlayer.Character }
+				local PartBoundsInBox = Workspace:GetPartBoundsInBox(
+					(Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 0, -6.5)),
+					Vector3.new(4, 4, 13),
+					OverlapParams.new()
+				)
+				for _, v20 in ipairs(PartBoundsInBox) do
+				end
+			end)
+			WindUI:Notify({ Title = "M1 Catch", Content = "Enabled", Duration = 2 })
+		else
+			connection105:Disconnect()
+			WindUI:Notify({ Title = "M1 Catch", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab14:Slider({
+	Title = "M1 Catch Range (studs)",
+	Flag = "Save48",
+	Value = { Default = 13, Max = 20, Min = 2 },
+	Callback = function(Value) end,
+})
+Tab14:Slider({
+	Title = "M1 Catch Hold (ms)",
+	Flag = "Save49",
+	Value = { Default = 200, Max = 1000, Min = 10 },
+	Callback = function(Value) end,
+})
+Tab14:Slider({
+	Title = "M1 Catch Prediction %",
+	Flag = "Save50",
+	Value = { Default = 0, Max = 100, Min = 0 },
+	Callback = function(Value) end,
+})
+Tab14:Divider()
+Tab14:Toggle({
+	Title = "Fast Dash",
+	Desc = "NOT COMPATIBLE WITH MOST FETURES",
+	Flag = "Save51",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection106 = Players5.LocalPlayer.Character
+				:FindFirstChildOfClass("Humanoid").AnimationPlayed
+				:Connect(function(arg1)
+					tostring(arg1.Animation.AnimationId):match("%d+")
+				end)
+			WindUI:Notify({ Title = "Fast Dash", Content = "Enabled", Duration = 2 })
+		else
+			connection106:Disconnect()
+			WindUI:Notify({ Title = "Fast Dash", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab14:Toggle({
+	Title = "Only Torso Collisions",
+	Flag = "Save52",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection112 = Players5.PlayerAdded:Connect(function(player)
+				local descendants3 = player.Character:GetDescendants()
+				for _, v21 in ipairs(descendants3) do
+					v21.CanCollide = true
+				end
+				local connection107 = player.Character.DescendantAdded:Connect(function(descendant)
+					descendant.CanCollide = true
+				end)
+				player.Character.AncestryChanged:Connect(function() end)
+				player.CharacterAdded:Connect(function(character)
+					local descendants4 = character:GetDescendants()
+					for _, v22 in ipairs(descendants4) do
+						v22.CanCollide = true
+					end
+					local connection109 = character.DescendantAdded:Connect(function(descendant)
+						descendant.CanCollide = true
+					end)
+					character.AncestryChanged:Connect(function() end)
+				end)
+			end)
+			local players3 = Players5:GetPlayers()
+			for _, v23 in ipairs(players3) do
+				local descendants5 = v23.Character:GetDescendants()
+				for _, v24 in ipairs(descendants5) do
+					v24.CanCollide = true
+				end
+				local connection113 = v23.Character.DescendantAdded:Connect(function(descendant)
+					descendant.CanCollide = true
+				end)
+				v23.Character.AncestryChanged:Connect(function() end)
+				v23.CharacterAdded:Connect(function(character)
+					local descendants6 = character:GetDescendants()
+					for _, v25 in ipairs(descendants6) do
+						v25.CanCollide = true
+					end
+					local connection115 = character.DescendantAdded:Connect(function(descendant)
+						descendant.CanCollide = true
+					end)
+					character.AncestryChanged:Connect(function() end)
+				end)
+			end
+			local descendants7 = Workspace:GetDescendants()
+			for _, v26 in ipairs(descendants7) do
+			end
+			WindUI:Notify({ Title = "Only Torso Collisions", Content = "Only Torso Collisions enabled", Duration = 3 })
+		else
+			connection112:Disconnect()
+			connection109:Disconnect()
+			connection113:Disconnect()
+			connection107:Disconnect()
+			connection115:Disconnect()
+			WindUI:Notify({ Title = "Only Torso Collisions", Content = "Only Torso Collisions disabled", Duration = 3 })
+		end
+	end,
+})
+Tab14:Divider()
+Tab14:Toggle({
+	Title = "Enable MouseDash",
+	Flag = "Save53",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection121 = Players5.LocalPlayer.CharacterAdded:Connect(function(character)
+				local connection119 = character:WaitForChild("Humanoid", 5).AnimationPlayed:Connect(function(arg1)
+					local Mouse2 = Players5.LocalPlayer:GetMouse()
+					local connection118 = RunService2.RenderStepped:Connect(function()
+						character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.new(
+							character:FindFirstChild("HumanoidRootPart").Position,
+							Vector3.new(
+								Mouse2.Hit.Position.X,
+								character:FindFirstChild("HumanoidRootPart").Position.Y,
+								Mouse2.Hit.Position.Z
+							)
+						)
+					end)
+				end)
+				local PlayingAnimationTracks11 = character:WaitForChild("Humanoid", 5):GetPlayingAnimationTracks()
+				for _, v27 in ipairs(PlayingAnimationTracks11) do
+				end
+				local connection120 = character.AncestryChanged:Connect(function() end)
+			end)
+			connection119:Disconnect()
+			connection120:Disconnect()
+			connection118:Disconnect()
+			local connection123 = Players5.LocalPlayer.Character
+				:WaitForChild("Humanoid", 5).AnimationPlayed
+				:Connect(function(arg1)
+					local Mouse3 = Players5.LocalPlayer:GetMouse()
+					local connection122 = RunService2.RenderStepped:Connect(function()
+						Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.new(
+							Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position,
+							Vector3.new(
+								Mouse3.Hit.Position.X,
+								Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position.Y,
+								Mouse3.Hit.Position.Z
+							)
+						)
+					end)
+				end)
+			local PlayingAnimationTracks12 =
+				Players5.LocalPlayer.Character:WaitForChild("Humanoid", 5):GetPlayingAnimationTracks()
+			for _, v28 in ipairs(PlayingAnimationTracks12) do
+			end
+			local connection124 = Players5.LocalPlayer.Character.AncestryChanged:Connect(function() end)
+		else
+			connection121:Disconnect()
+			connection123:Disconnect()
+			connection124:Disconnect()
+			connection122:Disconnect()
+		end
+	end,
+})
+Tab14:Slider({
+	Title = "MouseDash Delay (ms)",
+	Flag = "Save54",
+	Value = { Default = 500, Max = 3000, Min = 500 },
+	Callback = function() end,
+})
+Tab15:Button({
+	Title = "Baldy To Sorcerer",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://raw.githubusercontent.com/Onihub-sigma/OniHub-Gojo-Public/refs/heads/main/Gojo%20Onihub%20Public.txt"
+			)
+		)()
+		WindUI:Notify({
+			Title = "Animation Loaded",
+			Content = "Baldy To Sorcerer animation script loaded",
+			Duration = 3,
+		})
+	end,
+})
+Tab15:Button({
+	Title = "GAROU TO V1",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Nova2ezz/GarouToV1/refs/heads/main/GarouToV1.txt"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "GAROU TO V1 animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "SUNG JIN WOO USE NINJA",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://raw.githubusercontent.com/Nova2ezz/nova2ezz-SungjiWoo/refs/heads/main/Protected_7939201355282604.txt"
+			)
+		)()
+		WindUI:Notify({
+			Title = "Animation Loaded",
+			Content = "SUNG JIN WOO USE NINJA animation script loaded",
+			Duration = 3,
+		})
+	end,
+})
+Tab15:Button({
+	Title = "ATOMIC SAMOURAI TO VERGIL",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://raw.githubusercontent.com/Nova2ezz/vergilmoveset/refs/heads/main/Protected_9080797627073616.txt"
+			)
+		)()
+		WindUI:Notify({
+			Title = "Animation Loaded",
+			Content = "ATOMIC SAMOURAI TO VERGIL animation script loaded",
+			Duration = 3,
+		})
+	end,
+})
+Tab15:Button({
+	Title = "JJS GOJO v3",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://raw.githubusercontent.com/damir512/jjsgojov3/main/SaitamaToGojoV3_SOURCE-obfuscated_2.txt"
+			)
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "JJS GOJO v3 animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "GAROU TO KJ",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://raw.githubusercontent.com/damir512/garoukjv1maybeidk/main/Protected_2460290213750059.txt"
+			)
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "GAROU TO KJ animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "MINOS PRIME",
+	Callback = function()
+		loadstring(
+			game:HttpGet("https://raw.githubusercontent.com/S1gmaGuy/MinosPrimeFixed/refs/heads/main/ThefixIsSoSigma")
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "MINOS PRIME animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "ATOMIC TO YUTA",
+	Callback = function()
+		loadstring(
+			game:HttpGet("https://raw.githubusercontent.com/damir512/AtomicToYuta/main/Protected_8122576078506000.txt")
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "ATOMIC TO YUTA animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "OKRAUN",
+	Callback = function()
+		loadstring(
+			game:HttpGet("https://raw.githubusercontent.com/damir512/hakari/main/Protected_5980408162046394.txt")
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "OKRAUN animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "TODO",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Nova2ezz/Todo-moveset/refs/heads/main/Todo"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "TODO animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Blady To Mahito",
+	Callback = function()
+		loadstring(
+			game:HttpGet("https://raw.githubusercontent.com/Kenjihin69/Kenjihin69/refs/heads/main/Mahitotsbupdate")
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Blady To Mahito animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Sonic.Exe",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Nova2ezz/sonic-exe-moveset-3/refs/heads/main/3"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Sonic.Exe animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "APOPHENIA V2 EDUCATION",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Reapvitalized/TSB/main/APOPHENIA.lua"))()
+		WindUI:Notify({
+			Title = "Animation Loaded",
+			Content = "APOPHENIA V2 EDUCATION animation script loaded",
+			Duration = 3,
+		})
+	end,
+})
+Tab15:Button({
+	Title = "Atomic To Sukuna",
+	Callback = function()
+		loadstring(
+			game:HttpGet("https://raw.githubusercontent.com/zyrask/Nexus-Base/main/atomic-blademaster%20to%20sukuna")
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Atomic To Sukuna animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Kyra KJ",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://gist.githubusercontent.com/GoldenHeads25/fe3178dff916f988d319c3bd5e4fc01/raw/b250ee6f967c4e84195a76ab7915fb1d79b53326/gistfile1.txt"
+			)
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Kyra KJ animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Kyra Gojo",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://raw.githubusercontent.com/skibidtoiletfan2007/BaldBald BaldyToSorcerer/main/Latest.lua"
+			)
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Kyra Gojo animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Luffy",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://github.com/aggiealledge/obfuscated-scripts/raw/refs/heads/main/Protected_7732857839120517.txt"
+			)
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Luffy animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Shinjin",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://raw.githubusercontent.com/Kenjihin69/Kenjihin69/refs/heads/main/Shinji%20tp%20exploit"
+			)
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Shinjin animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "SUKUNA",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/damir512/whendoesbrickdie/main/tspno.txt"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "SUKUNA animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Sans",
+	Callback = function()
+		loadstring(game:HttpGet("https://paste.ee/r/rF9d3"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Sans animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Cosminc GAROU",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastebin.com/raw/kT3Z8rse"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Cosminc GAROU animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "SONIC .EXE",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastefy.app/4zLt8a2P/raw"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "SONIC .EXE animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "WALLY WEST",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://raw.githubusercontent.com/Nova2ezz/west/refs/heads/main/Protected_4638864115822087.lua.txt"
+			)
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "WALLY WEST animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "LAIFU",
+	Callback = function()
+		loadstring(game:HttpGet("https://paste.ee/r/Knl1L56b"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "LAIFU animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "BEERUS",
+	Callback = function()
+		loadstring(
+			game:HttpGet("https://raw.githubusercontent.com/sparksnaps/Beerus-The-Destroyer/refs/heads/main/Lua")
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "BEERUS animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "MADARA",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://raw.githubusercontent.com/LolnotaKid/SCRIPTSBYVEUX/refs/heads/main/BoombasticLol.lua.txt"
+			)
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "MADARA animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "GoldenHead",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://raw.githubusercontent.com/Kenjihin69/Kenjihin69/refs/heads/main/Saitama%20to%20golden%20sigma"
+			)
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "GoldenHead animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "GOJO moveset BEST",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://raw.githubusercontent.com/Kenjihin69/Kenjihin69/refs/heads/main/Saitama%20to%20golden%20sigma"
+			)
+		)()
+		WindUI:Notify({
+			Title = "Animation Loaded",
+			Content = "GOJO moveset BEST animation script loaded",
+			Duration = 3,
+		})
+	end,
+})
+Tab15:Button({
+	Title = "MASTERY DEKU",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastebin.com/raw/xKextYP5"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "MASTERY DEKU animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "TRASHCAN",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yes1nt/yes/refs/heads/main/Trashcan%20Man"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "TRASHCAN animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Star Glitcher (Euphoria)",
+	Callback = function()
+		loadstring(game:HttpGet("https://paste.ee/r/mmQkO"))()
+		WindUI:Notify({
+			Title = "Animation Loaded",
+			Content = "Star Glitcher (Euphoria) animation script loaded",
+			Duration = 3,
+		})
+	end,
+})
+Tab15:Button({
+	Title = "Dio",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://raw.githubusercontent.com/ThanakritScript/StandUserCilent/refs/heads/main/DioBeta.lua"
+			)
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Dio animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Mastery Deku",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastebin.com/raw/xKextYP5"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Mastery Deku animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "A-Train",
+	Callback = function()
+		loadstring(game:HttpGet("https://paste.ee/r/AnZ5j"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "A-Train animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Goku",
+	Callback = function()
+		loadstring(game:HttpGet("https://rawscripts.net/raw/The-Strongest-Battlegrounds-Goku-Moveset-V2-17977"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Goku animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Shinjuku Yuji",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://raw.githubusercontent.com/Kenjihin69/Kenjihin69/refs/heads/main/Yuji%20early%20access"
+			)
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Shinjuku Yuji animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Multiple moves",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Reapvitalized/TSB/refs/heads/main/SG_DEMO.lua"))()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Multiple moves animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "1x1x1",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://gist.githubusercontent.com/GoldenHeads2/900e87ffc32f3c740930ccb106dd6abf/raw/358c5bf0f0a6aa25946718288dab006e3ae7e1d4/gistfile1.txt"
+			)
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "1x1x1 animation script loaded", Duration = 3 })
+	end,
+})
+Tab15:Button({
+	Title = "Chainsaw Man",
+	Callback = function()
+		loadstring(
+			game:HttpGet(
+				"https://gist.githubusercontent.com/GoldenHeads2/0fd8d36993c850f3fac89e5adf793076/raw/ab4f5a42bd0b2e24a32a46301d533ea849ca771c/gistfile1.txt"
+			)
+		)()
+		WindUI:Notify({ Title = "Animation Loaded", Content = "Chainsaw Man animation script loaded", Duration = 3 })
+	end,
+})
+Tab16:Paragraph({
+	Title = "Utilities",
+	Color = Color3.fromHex("#b2bec3"),
+	Desc = "Various utility features (QOF)",
+	Image = "lucide:square-plus",
+	ImageSize = 20,
+})
+local Lighting3 = game:GetService("Lighting")
+Tab16:Dropdown({
+	Title = "Shader Hub",
+	Flag = "Save55",
+	Value = "None",
+	Values = {
+		"None",
+		"Rain Shader",
+		"Nebula Shader",
+		"Night Shader",
+		"Stars Shader",
+		"Warm Shader",
+		"Galaxy Shader",
+		"Sunset Shader",
+		"Morning Shader",
+		"Ocean Shader",
+		"Dark Shader",
+		"Realistic Shader",
+	},
+	Callback = function(Value)
+		if Value == "None" then
+			WindUI:Notify({ Title = "Shader Disabled", Content = "Original lighting restored.", Duration = 2 })
+		elseif Value == "Rain Shader" then
+			local children6 = Lighting3:GetChildren()
+			for _, v29 in ipairs(children6) do
+				local Clone = v29:Clone()
+			end
+			local children7 = Lighting3:GetChildren()
+			for _, v30 in ipairs(children7) do
+				v30:Destroy()
+			end
+			local Sky = Instance.new("Sky", Lighting3)
+			Sky.SkyboxBk = "http://www.roblox.com/asset/?id=4495864450"
+			Sky.SkyboxDn = "http://www.roblox.com/asset/?id=4495864887"
+			Sky.SkyboxFt = "http://www.roblox.com/asset/?id=4495865458"
+			Sky.SkyboxLf = "http://www.roblox.com/asset/?id=4495866035"
+			Sky.SkyboxRt = "http://www.roblox.com/asset/?id=4495866584"
+			Sky.SkyboxUp = "http://www.roblox.com/asset/?id=4495867486"
+			local ColorCorrectionEffect = Instance.new("ColorCorrectionEffect", Lighting3)
+			ColorCorrectionEffect.Brightness = 0.05
+			ColorCorrectionEffect.Contrast = 0.05
+			ColorCorrectionEffect.TintColor = Color3.fromRGB(170, 170, 170)
+			WindUI:Notify({ Title = "Shader Applied", Content = "Rain Shader", Duration = 2 })
+		elseif Value == "Nebula Shader" then
+			local children8 = Lighting3:GetChildren()
+			for _, v31 in ipairs(children8) do
+				v31:Destroy()
+			end
+			Lighting3.ClockTime = Lighting3.ClockTime
+			Lighting3.ColorShift_Bottom = Lighting3.ColorShift_Bottom
+			Lighting3.FogColor = Lighting3.FogColor
+			Lighting3.FogEnd = Lighting3.FogEnd
+			Lighting3.ShadowSoftness = Lighting3.ShadowSoftness
+			Lighting3.EnvironmentDiffuseScale = Lighting3.EnvironmentDiffuseScale
+			Lighting3.EnvironmentSpecularScale = Lighting3.EnvironmentSpecularScale
+			Lighting3.FogStart = Lighting3.FogStart
+			Lighting3.GeographicLatitude = Lighting3.GeographicLatitude
+			Lighting3.Ambient = Lighting3.Ambient
+			Lighting3.OutdoorAmbient = Lighting3.OutdoorAmbient
+			Lighting3.ExposureCompensation = Lighting3.ExposureCompensation
+			Lighting3.Brightness = Lighting3.Brightness
+			Lighting3.ColorShift_Top = Lighting3.ColorShift_Top
+			Lighting3.GlobalShadows = Lighting3.GlobalShadows
+			local Clone2 = Clone:Clone()
+			Clone2.Parent = Lighting3
+			local children9 = Lighting3:GetChildren()
+			for _, v32 in ipairs(children9) do
+				local Clone3 = v32:Clone()
+			end
+			local children10 = Lighting3:GetChildren()
+			for _, v33 in ipairs(children10) do
+				v33:Destroy()
+			end
+			local Sky2 = Instance.new("Sky", Lighting3)
+			Sky2.SkyboxBk = "http://www.roblox.com/asset/?id=15983968922"
+			Sky2.SkyboxDn = "http://www.roblox.com/asset/?id=15983966825"
+			Sky2.SkyboxFt = "http://www.roblox.com/asset/?id=15983965025"
+			Sky2.SkyboxLf = "http://www.roblox.com/asset/?id=15983967420"
+			Sky2.SkyboxRt = "http://www.roblox.com/asset/?id=15983966246"
+			Sky2.SkyboxUp = "http://www.roblox.com/asset/?id=15983964246"
+			local ColorCorrectionEffect2 = Instance.new("ColorCorrectionEffect", Lighting3)
+			ColorCorrectionEffect2.Brightness = 0.05
+			ColorCorrectionEffect2.Contrast = -0.02
+			ColorCorrectionEffect2.TintColor = Color3.fromRGB(105, 72, 255)
+			WindUI:Notify({ Title = "Shader Applied", Content = "Nebula Shader", Duration = 2 })
+		elseif Value == "Night Shader" then
+			local children11 = Lighting3:GetChildren()
+			for _, v34 in ipairs(children11) do
+				v34:Destroy()
+			end
+			Lighting3.ClockTime = Lighting3.ClockTime
+			Lighting3.ColorShift_Bottom = Lighting3.ColorShift_Bottom
+			Lighting3.FogColor = Lighting3.FogColor
+			Lighting3.FogEnd = Lighting3.FogEnd
+			Lighting3.ShadowSoftness = Lighting3.ShadowSoftness
+			Lighting3.EnvironmentDiffuseScale = Lighting3.EnvironmentDiffuseScale
+			Lighting3.EnvironmentSpecularScale = Lighting3.EnvironmentSpecularScale
+			Lighting3.FogStart = Lighting3.FogStart
+			Lighting3.GeographicLatitude = Lighting3.GeographicLatitude
+			Lighting3.Ambient = Lighting3.Ambient
+			Lighting3.OutdoorAmbient = Lighting3.OutdoorAmbient
+			Lighting3.ExposureCompensation = Lighting3.ExposureCompensation
+			Lighting3.Brightness = Lighting3.Brightness
+			Lighting3.ColorShift_Top = Lighting3.ColorShift_Top
+			Lighting3.GlobalShadows = Lighting3.GlobalShadows
+			local Clone4 = Clone3:Clone()
+			Clone4.Parent = Lighting3
+			local children12 = Lighting3:GetChildren()
+			for _, v35 in ipairs(children12) do
+				local Clone5 = v35:Clone()
+			end
+			local children13 = Lighting3:GetChildren()
+			for _, v36 in ipairs(children13) do
+				v36:Destroy()
+			end
+			local Sky3 = Instance.new("Sky", Lighting3)
+			Sky3.SkyboxUp = "http://www.roblox.com/asset/?id=12064131"
+			Sky3.SkyboxLf = "http://www.roblox.com/asset/?id=12063984"
+			Sky3.SkyboxFt = "http://www.roblox.com/asset/?id=12064121"
+			Sky3.SkyboxBk = "http://www.roblox.com/asset/?id=12064107"
+			Sky3.SkyboxDn = "http://www.roblox.com/asset/?id=12064152"
+			Sky3.SkyboxRt = "http://www.roblox.com/asset/?id=12064115"
+			local ColorCorrectionEffect3 = Instance.new("ColorCorrectionEffect", Lighting3)
+			ColorCorrectionEffect3.Brightness = 0.07
+			ColorCorrectionEffect3.Contrast = -0.07
+			ColorCorrectionEffect3.TintColor = Color3.fromRGB(44, 70, 187)
+			WindUI:Notify({ Title = "Shader Applied", Content = "Night Shader", Duration = 2 })
+		elseif Value == "Stars Shader" then
+			local children14 = Lighting3:GetChildren()
+			for _, v37 in ipairs(children14) do
+				v37:Destroy()
+			end
+			Lighting3.ClockTime = Lighting3.ClockTime
+			Lighting3.ColorShift_Bottom = Lighting3.ColorShift_Bottom
+			Lighting3.FogColor = Lighting3.FogColor
+			Lighting3.FogEnd = Lighting3.FogEnd
+			Lighting3.ShadowSoftness = Lighting3.ShadowSoftness
+			Lighting3.EnvironmentDiffuseScale = Lighting3.EnvironmentDiffuseScale
+			Lighting3.EnvironmentSpecularScale = Lighting3.EnvironmentSpecularScale
+			Lighting3.FogStart = Lighting3.FogStart
+			Lighting3.GeographicLatitude = Lighting3.GeographicLatitude
+			Lighting3.Ambient = Lighting3.Ambient
+			Lighting3.OutdoorAmbient = Lighting3.OutdoorAmbient
+			Lighting3.ExposureCompensation = Lighting3.ExposureCompensation
+			Lighting3.Brightness = Lighting3.Brightness
+			Lighting3.ColorShift_Top = Lighting3.ColorShift_Top
+			Lighting3.GlobalShadows = Lighting3.GlobalShadows
+			local Clone6 = Clone5:Clone()
+			Clone6.Parent = Lighting3
+			local children15 = Lighting3:GetChildren()
+			for _, v38 in ipairs(children15) do
+				local Clone7 = v38:Clone()
+			end
+			local children16 = Lighting3:GetChildren()
+			for _, v39 in ipairs(children16) do
+				v39:Destroy()
+			end
+			local Sky4 = Instance.new("Sky")
+			Sky4.SkyboxUp = "rbxassetid://5559302033"
+			Sky4.SkyboxLf = "rbxassetid://5559292825"
+			Sky4.SkyboxFt = "rbxassetid://5559300879"
+			Sky4.SkyboxBk = "rbxassetid://5559289158"
+			Sky4.SkyboxDn = "rbxassetid://5559290893"
+			Sky4.SkyboxRt = "rbxassetid://5559302989"
+			Sky4.Parent = Lighting3
+			local DepthOfFieldEffect = Instance.new("DepthOfFieldEffect", Lighting3)
+			DepthOfFieldEffect.FarIntensity = 0.12
+			DepthOfFieldEffect.NearIntensity = 0.3
+			DepthOfFieldEffect.FocusDistance = 20
+			DepthOfFieldEffect.InFocusRadius = 17
+			local ColorCorrectionEffect4 = Instance.new("ColorCorrectionEffect", Lighting3)
+			ColorCorrectionEffect4.TintColor = Color3.fromRGB(245, 200, 245)
+			ColorCorrectionEffect4.Brightness = 0
+			ColorCorrectionEffect4.Contrast = 0.2
+			ColorCorrectionEffect4.Saturation = -0.1
+			local BloomEffect = Instance.new("BloomEffect", Lighting3)
+			BloomEffect.Intensity = 0.4
+			BloomEffect.Size = 12
+			BloomEffect.Threshold = 0.2
+			Lighting3.Brightness = 0.05
+			Lighting3.ExposureCompensation = 0.8
+			Lighting3.EnvironmentDiffuseScale = 0.4
+			Lighting3.EnvironmentSpecularScale = 0.4
+			Lighting3.Ambient = Color3.fromRGB(107, 107, 107)
+			Lighting3.OutdoorAmbient = Color3.fromRGB(115, 93, 137)
+			Lighting3.GeographicLatitude = 60
+			Lighting3.ClockTime = 10
+			local PropertyChangedSignal3 = Lighting3:GetPropertyChangedSignal("ClockTime")
+			local connection125 = PropertyChangedSignal3:Connect(function()
+				Lighting3.ClockTime = 10
+			end)
+			Lighting3.GlobalShadows = true
+			Lighting3.ShadowSoftness = 0.08
+			sethiddenproperty(Lighting3, "Technology", "Future")
+			WindUI:Notify({ Title = "Shader Applied", Content = "Stars Shader", Duration = 2 })
+		elseif Value == "Warm Shader" then
+			connection125:Disconnect()
+			local children17 = Lighting3:GetChildren()
+			for _, v40 in ipairs(children17) do
+				v40:Destroy()
+			end
+			Lighting3.ClockTime = Lighting3.ClockTime
+			Lighting3.ColorShift_Bottom = Lighting3.ColorShift_Bottom
+			Lighting3.FogColor = Lighting3.FogColor
+			Lighting3.FogEnd = Lighting3.FogEnd
+			Lighting3.ShadowSoftness = Lighting3.ShadowSoftness
+			Lighting3.EnvironmentDiffuseScale = Lighting3.EnvironmentDiffuseScale
+			Lighting3.EnvironmentSpecularScale = Lighting3.EnvironmentSpecularScale
+			Lighting3.FogStart = Lighting3.FogStart
+			Lighting3.GeographicLatitude = Lighting3.GeographicLatitude
+			Lighting3.Ambient = Lighting3.Ambient
+			Lighting3.OutdoorAmbient = Lighting3.OutdoorAmbient
+			Lighting3.ExposureCompensation = Lighting3.ExposureCompensation
+			Lighting3.Brightness = Lighting3.Brightness
+			Lighting3.ColorShift_Top = Lighting3.ColorShift_Top
+			Lighting3.GlobalShadows = Lighting3.GlobalShadows
+			local Clone8 = Clone7:Clone()
+			Clone8.Parent = Lighting3
+			local children18 = Lighting3:GetChildren()
+			for _, v41 in ipairs(children18) do
+				local Clone9 = v41:Clone()
+			end
+			local children19 = Lighting3:GetChildren()
+			for _, v42 in ipairs(children19) do
+				v42:Destroy()
+			end
+			local Sky5 = Instance.new("Sky")
+			Sky5.SkyboxUp = "http://www.roblox.com/asset?id=232707707"
+			Sky5.SkyboxLf = "http://www.roblox.com/asset?id=232708001"
+			Sky5.SkyboxFt = "http://www.roblox.com/asset?id=232707879"
+			Sky5.SkyboxBk = "http://www.roblox.com/asset?id=232707959"
+			Sky5.SkyboxDn = "http://www.roblox.com/asset?id=232707790"
+			Sky5.SkyboxRt = "http://www.roblox.com/asset?id=232707983"
+			Sky5.Parent = Lighting3
+			local DepthOfFieldEffect2 = Instance.new("DepthOfFieldEffect", Lighting3)
+			DepthOfFieldEffect2.FarIntensity = 0.12
+			DepthOfFieldEffect2.NearIntensity = 0.3
+			DepthOfFieldEffect2.FocusDistance = 20
+			DepthOfFieldEffect2.InFocusRadius = 17
+			local BloomEffect2 = Instance.new("BloomEffect", Lighting3)
+			BloomEffect2.Intensity = 0.6
+			BloomEffect2.Size = 12
+			BloomEffect2.Threshold = 0.2
+			local ColorCorrectionEffect5 = Instance.new("ColorCorrectionEffect", Lighting3)
+			ColorCorrectionEffect5.TintColor = Color3.fromRGB(255, 255, 255)
+			ColorCorrectionEffect5.Brightness = 0
+			ColorCorrectionEffect5.Contrast = 0.3
+			ColorCorrectionEffect5.Saturation = 0.2
+			local SunRaysEffect = Instance.new("SunRaysEffect", Lighting3)
+			SunRaysEffect.Enabled = true
+			SunRaysEffect.Intensity = 0.003
+			SunRaysEffect.Spread = 1
+			Lighting3.Brightness = 0.2
+			Lighting3.ExposureCompensation = 0.6
+			Lighting3.EnvironmentDiffuseScale = 0.5
+			Lighting3.EnvironmentSpecularScale = 0.5
+			Lighting3.Ambient = Color3.fromRGB(58, 58, 58)
+			Lighting3.OutdoorAmbient = Color3.fromRGB(127, 116, 79)
+			Lighting3.GeographicLatitude = 310
+			Lighting3.ClockTime = 13
+			local PropertyChangedSignal4 = Lighting3:GetPropertyChangedSignal("ClockTime")
+			local connection126 = PropertyChangedSignal4:Connect(function()
+				Lighting3.ClockTime = 13
+			end)
+			Lighting3.GlobalShadows = true
+			Lighting3.ShadowSoftness = 0.08
+			sethiddenproperty(Lighting3, "Technology", "Future")
+			WindUI:Notify({ Title = "Shader Applied", Content = "Warm Shader", Duration = 2 })
+		elseif Value == "Galaxy Shader" then
+			connection126:Disconnect()
+			local children20 = Lighting3:GetChildren()
+			for _, v43 in ipairs(children20) do
+				v43:Destroy()
+			end
+			Lighting3.ClockTime = Lighting3.ClockTime
+			Lighting3.ColorShift_Bottom = Lighting3.ColorShift_Bottom
+			Lighting3.FogColor = Lighting3.FogColor
+			Lighting3.FogEnd = Lighting3.FogEnd
+			Lighting3.ShadowSoftness = Lighting3.ShadowSoftness
+			Lighting3.EnvironmentDiffuseScale = Lighting3.EnvironmentDiffuseScale
+			Lighting3.EnvironmentSpecularScale = Lighting3.EnvironmentSpecularScale
+			Lighting3.FogStart = Lighting3.FogStart
+			Lighting3.GeographicLatitude = Lighting3.GeographicLatitude
+			Lighting3.Ambient = Lighting3.Ambient
+			Lighting3.OutdoorAmbient = Lighting3.OutdoorAmbient
+			Lighting3.ExposureCompensation = Lighting3.ExposureCompensation
+			Lighting3.Brightness = Lighting3.Brightness
+			Lighting3.ColorShift_Top = Lighting3.ColorShift_Top
+			Lighting3.GlobalShadows = Lighting3.GlobalShadows
+			local Clone10 = Clone9:Clone()
+			Clone10.Parent = Lighting3
+			local children21 = Lighting3:GetChildren()
+			for _, v44 in ipairs(children21) do
+				local Clone11 = v44:Clone()
+			end
+			local children22 = Lighting3:GetChildren()
+			for _, v45 in ipairs(children22) do
+				v45:Destroy()
+			end
+			local Sky6 = Instance.new("Sky")
+			Sky6.SkyboxUp = "rbxassetid://1903391299"
+			Sky6.SkyboxLf = "rbxassetid://1903388369"
+			Sky6.SkyboxFt = "rbxassetid://1903389258"
+			Sky6.SkyboxBk = "rbxassetid://1903390348"
+			Sky6.SkyboxDn = "rbxassetid://1903391981"
+			Sky6.SkyboxRt = "rbxassetid://1903387293"
+			Sky6.Parent = Lighting3
+			local DepthOfFieldEffect3 = Instance.new("DepthOfFieldEffect", Lighting3)
+			DepthOfFieldEffect3.FarIntensity = 0.12
+			DepthOfFieldEffect3.NearIntensity = 0.3
+			DepthOfFieldEffect3.FocusDistance = 20
+			DepthOfFieldEffect3.InFocusRadius = 17
+			local BloomEffect3 = Instance.new("BloomEffect", Lighting3)
+			BloomEffect3.Intensity = 0.6
+			BloomEffect3.Size = 12
+			BloomEffect3.Threshold = 0.2
+			local SunRaysEffect2 = Instance.new("SunRaysEffect", Lighting3)
+			SunRaysEffect2.Enabled = true
+			SunRaysEffect2.Intensity = 0.003
+			SunRaysEffect2.Spread = 1
+			local ColorCorrectionEffect6 = Instance.new("ColorCorrectionEffect", Lighting3)
+			ColorCorrectionEffect6.TintColor = Color3.fromRGB(245, 240, 255)
+			ColorCorrectionEffect6.Brightness = -0.04
+			ColorCorrectionEffect6.Contrast = 0.2
+			ColorCorrectionEffect6.Saturation = 0.2
+			Lighting3.Brightness = 0.2
+			Lighting3.ExposureCompensation = 0.7
+			Lighting3.EnvironmentDiffuseScale = 0.5
+			Lighting3.EnvironmentSpecularScale = 0.5
+			Lighting3.Ambient = Color3.fromRGB(101, 101, 101)
+			Lighting3.OutdoorAmbient = Color3.fromRGB(131, 77, 122)
+			Lighting3.GeographicLatitude = 0
+			Lighting3.ClockTime = 15.25
+			local PropertyChangedSignal5 = Lighting3:GetPropertyChangedSignal("ClockTime")
+			local connection127 = PropertyChangedSignal5:Connect(function()
+				Lighting3.ClockTime = 15.25
+			end)
+			Lighting3.GlobalShadows = true
+			Lighting3.ShadowSoftness = 0.08
+			sethiddenproperty(Lighting3, "Technology", "Future")
+			WindUI:Notify({ Title = "Shader Applied", Content = "Galaxy Shader", Duration = 2 })
+		elseif Value == "Sunset Shader" then
+			connection127:Disconnect()
+			local children23 = Lighting3:GetChildren()
+			for _, v46 in ipairs(children23) do
+				v46:Destroy()
+			end
+			Lighting3.ClockTime = Lighting3.ClockTime
+			Lighting3.ColorShift_Bottom = Lighting3.ColorShift_Bottom
+			Lighting3.FogColor = Lighting3.FogColor
+			Lighting3.FogEnd = Lighting3.FogEnd
+			Lighting3.ShadowSoftness = Lighting3.ShadowSoftness
+			Lighting3.EnvironmentDiffuseScale = Lighting3.EnvironmentDiffuseScale
+			Lighting3.EnvironmentSpecularScale = Lighting3.EnvironmentSpecularScale
+			Lighting3.FogStart = Lighting3.FogStart
+			Lighting3.GeographicLatitude = Lighting3.GeographicLatitude
+			Lighting3.Ambient = Lighting3.Ambient
+			Lighting3.OutdoorAmbient = Lighting3.OutdoorAmbient
+			Lighting3.ExposureCompensation = Lighting3.ExposureCompensation
+			Lighting3.Brightness = Lighting3.Brightness
+			Lighting3.ColorShift_Top = Lighting3.ColorShift_Top
+			Lighting3.GlobalShadows = Lighting3.GlobalShadows
+			local Clone12 = Clone11:Clone()
+			Clone12.Parent = Lighting3
+			local children24 = Lighting3:GetChildren()
+			for _, v47 in ipairs(children24) do
+				local Clone13 = v47:Clone()
+			end
+			local children25 = Lighting3:GetChildren()
+			for _, v48 in ipairs(children25) do
+				v48:Destroy()
+			end
+			local Sky7 = Instance.new("Sky")
+			Sky7.SkyboxUp = "rbxassetid://2670644331"
+			Sky7.SkyboxLf = "rbxassetid://2670643070"
+			Sky7.SkyboxFt = "rbxassetid://2670643214"
+			Sky7.SkyboxBk = "rbxassetid://2670643994"
+			Sky7.SkyboxDn = "rbxassetid://2670643365"
+			Sky7.SkyboxRt = "rbxassetid://2670644173"
+			Sky7.Parent = Lighting3
+			local ColorCorrectionEffect7 = Instance.new("ColorCorrectionEffect", Lighting3)
+			ColorCorrectionEffect7.Enabled = true
+			ColorCorrectionEffect7.Brightness = 0.13
+			ColorCorrectionEffect7.Contrast = 0.4
+			ColorCorrectionEffect7.Saturation = 0.06
+			ColorCorrectionEffect7.TintColor = Color3.fromRGB(255, 230, 245)
+			local DepthOfFieldEffect4 = Instance.new("DepthOfFieldEffect", Lighting3)
+			DepthOfFieldEffect4.FarIntensity = 0.12
+			DepthOfFieldEffect4.NearIntensity = 0.3
+			DepthOfFieldEffect4.FocusDistance = 20
+			DepthOfFieldEffect4.InFocusRadius = 17
+			local BloomEffect4 = Instance.new("BloomEffect", Lighting3)
+			BloomEffect4.Intensity = 0.4
+			BloomEffect4.Size = 12
+			BloomEffect4.Threshold = 0.2
+			Lighting3.Brightness = 0.2
+			Lighting3.ExposureCompensation = 0.8
+			Lighting3.EnvironmentDiffuseScale = 0.5
+			Lighting3.EnvironmentSpecularScale = 0.5
+			Lighting3.Ambient = Color3.fromRGB(93, 59, 88)
+			Lighting3.OutdoorAmbient = Color3.fromRGB(128, 94, 100)
+			Lighting3.GeographicLatitude = 325
+			Lighting3.ClockTime = 11
+			local PropertyChangedSignal6 = Lighting3:GetPropertyChangedSignal("ClockTime")
+			local connection128 = PropertyChangedSignal6:Connect(function()
+				Lighting3.ClockTime = 11
+			end)
+			Lighting3.GlobalShadows = true
+			Lighting3.ShadowSoftness = 0.08
+			sethiddenproperty(Lighting3, "Technology", "Future")
+			WindUI:Notify({ Title = "Shader Applied", Content = "Sunset Shader", Duration = 2 })
+		elseif Value == "Morning Shader" then
+			connection128:Disconnect()
+			local children26 = Lighting3:GetChildren()
+			for _, v49 in ipairs(children26) do
+				v49:Destroy()
+			end
+			Lighting3.ClockTime = Lighting3.ClockTime
+			Lighting3.ColorShift_Bottom = Lighting3.ColorShift_Bottom
+			Lighting3.FogColor = Lighting3.FogColor
+			Lighting3.FogEnd = Lighting3.FogEnd
+			Lighting3.ShadowSoftness = Lighting3.ShadowSoftness
+			Lighting3.EnvironmentDiffuseScale = Lighting3.EnvironmentDiffuseScale
+			Lighting3.EnvironmentSpecularScale = Lighting3.EnvironmentSpecularScale
+			Lighting3.FogStart = Lighting3.FogStart
+			Lighting3.GeographicLatitude = Lighting3.GeographicLatitude
+			Lighting3.Ambient = Lighting3.Ambient
+			Lighting3.OutdoorAmbient = Lighting3.OutdoorAmbient
+			Lighting3.ExposureCompensation = Lighting3.ExposureCompensation
+			Lighting3.Brightness = Lighting3.Brightness
+			Lighting3.ColorShift_Top = Lighting3.ColorShift_Top
+			Lighting3.GlobalShadows = Lighting3.GlobalShadows
+			local Clone14 = Clone13:Clone()
+			Clone14.Parent = Lighting3
+			local children27 = Lighting3:GetChildren()
+			for _, v50 in ipairs(children27) do
+				local Clone15 = v50:Clone()
+			end
+			local children28 = Lighting3:GetChildren()
+			for _, v51 in ipairs(children28) do
+				v51:Destroy()
+			end
+			local Sky8 = Instance.new("Sky")
+			Sky8.SkyboxUp = "http://www.roblox.com/asset/?id=458016792"
+			Sky8.SkyboxLf = "http://www.roblox.com/asset/?id=458016655"
+			Sky8.SkyboxFt = "http://www.roblox.com/asset/?id=458016532"
+			Sky8.SkyboxBk = "http://www.roblox.com/asset/?id=458016711"
+			Sky8.SkyboxDn = "http://www.roblox.com/asset/?id=458016826"
+			Sky8.SkyboxRt = "http://www.roblox.com/asset/?id=458016782"
+			Sky8.Parent = Lighting3
+			local BloomEffect5 = Instance.new("BloomEffect", Lighting3)
+			BloomEffect5.Enabled = true
+			BloomEffect5.Threshold = 0.24
+			BloomEffect5.Size = 8
+			BloomEffect5.Intensity = 0.5
+			local SunRaysEffect3 = Instance.new("SunRaysEffect", Lighting3)
+			SunRaysEffect3.Enabled = true
+			SunRaysEffect3.Intensity = 0.05
+			SunRaysEffect3.Spread = 0.4
+			local ColorCorrectionEffect8 = Instance.new("ColorCorrectionEffect", Lighting3)
+			ColorCorrectionEffect8.Saturation = 0.14
+			ColorCorrectionEffect8.Brightness = -0.1
+			ColorCorrectionEffect8.Contrast = 0.14
+			local DepthOfFieldEffect5 = Instance.new("DepthOfFieldEffect", Lighting3)
+			DepthOfFieldEffect5.FarIntensity = 0.2
+			DepthOfFieldEffect5.InFocusRadius = 17
+			DepthOfFieldEffect5.FocusDistance = 20
+			DepthOfFieldEffect5.NearIntensity = 0.3
+			Lighting3.Brightness = 1
+			Lighting3.ExposureCompensation = 0.7
+			Lighting3.EnvironmentDiffuseScale = 0.3
+			Lighting3.EnvironmentSpecularScale = 0.3
+			Lighting3.Ambient = Color3.fromRGB(101, 72, 51)
+			Lighting3.OutdoorAmbient = Color3.fromRGB(175, 132, 119)
+			Lighting3.GeographicLatitude = 326
+			Lighting3.ClockTime = 16.33333333
+			local PropertyChangedSignal7 = Lighting3:GetPropertyChangedSignal("ClockTime")
+			local connection129 = PropertyChangedSignal7:Connect(function()
+				Lighting3.ClockTime = 16.33333333
+			end)
+			Lighting3.GlobalShadows = true
+			Lighting3.ShadowSoftness = 0.08
+			sethiddenproperty(Lighting3, "Technology", "Future")
+			WindUI:Notify({ Title = "Shader Applied", Content = "Morning Shader", Duration = 2 })
+		elseif Value == "Ocean Shader" then
+			connection129:Disconnect()
+			local children29 = Lighting3:GetChildren()
+			for _, v52 in ipairs(children29) do
+				v52:Destroy()
+			end
+			Lighting3.ClockTime = Lighting3.ClockTime
+			Lighting3.ColorShift_Bottom = Lighting3.ColorShift_Bottom
+			Lighting3.FogColor = Lighting3.FogColor
+			Lighting3.FogEnd = Lighting3.FogEnd
+			Lighting3.ShadowSoftness = Lighting3.ShadowSoftness
+			Lighting3.EnvironmentDiffuseScale = Lighting3.EnvironmentDiffuseScale
+			Lighting3.EnvironmentSpecularScale = Lighting3.EnvironmentSpecularScale
+			Lighting3.FogStart = Lighting3.FogStart
+			Lighting3.GeographicLatitude = Lighting3.GeographicLatitude
+			Lighting3.Ambient = Lighting3.Ambient
+			Lighting3.OutdoorAmbient = Lighting3.OutdoorAmbient
+			Lighting3.ExposureCompensation = Lighting3.ExposureCompensation
+			Lighting3.Brightness = Lighting3.Brightness
+			Lighting3.ColorShift_Top = Lighting3.ColorShift_Top
+			Lighting3.GlobalShadows = Lighting3.GlobalShadows
+			local Clone16 = Clone15:Clone()
+			Clone16.Parent = Lighting3
+			local children30 = Lighting3:GetChildren()
+			for _, v53 in ipairs(children30) do
+				local Clone17 = v53:Clone()
+			end
+			local children31 = Lighting3:GetChildren()
+			for _, v54 in ipairs(children31) do
+				v54:Destroy()
+			end
+			local Sky9 = Instance.new("Sky")
+			Sky9.SkyboxUp = "http://www.roblox.com/asset/?id=5260824661"
+			Sky9.SkyboxLf = "http://www.roblox.com/asset/?id=5260800833"
+			Sky9.SkyboxFt = "http://www.roblox.com/asset/?id=5260817288"
+			Sky9.SkyboxBk = "http://www.roblox.com/asset/?id=5260808177"
+			Sky9.SkyboxDn = "http://www.roblox.com/asset/?id=5260653793"
+			Sky9.SkyboxRt = "http://www.roblox.com/asset/?id=5260811073"
+			Sky9.Parent = Lighting3
+			local BloomEffect6 = Instance.new("BloomEffect", Lighting3)
+			BloomEffect6.Enabled = true
+			BloomEffect6.Threshold = 0.4
+			BloomEffect6.Size = 12
+			BloomEffect6.Intensity = 0.5
+			local ColorCorrectionEffect9 = Instance.new("ColorCorrectionEffect", Lighting3)
+			ColorCorrectionEffect9.Brightness = -0.03
+			ColorCorrectionEffect9.Contrast = 0.16
+			ColorCorrectionEffect9.Saturation = 0.06
+			ColorCorrectionEffect9.TintColor = Color3.fromRGB(220, 175, 255)
+			local DepthOfFieldEffect6 = Instance.new("DepthOfFieldEffect", Lighting3)
+			DepthOfFieldEffect6.FarIntensity = 0.12
+			DepthOfFieldEffect6.InFocusRadius = 17
+			DepthOfFieldEffect6.FocusDistance = 20
+			DepthOfFieldEffect6.NearIntensity = 0.3
+			Lighting3.Brightness = 0.2
+			Lighting3.ExposureCompensation = 1
+			Lighting3.EnvironmentDiffuseScale = 0.4
+			Lighting3.EnvironmentSpecularScale = 0.4
+			Lighting3.Ambient = Color3.fromRGB(79, 54, 101)
+			Lighting3.OutdoorAmbient = Color3.fromRGB(162, 118, 175)
+			Lighting3.GeographicLatitude = 306
+			Lighting3.ClockTime = 10
+			local PropertyChangedSignal8 = Lighting3:GetPropertyChangedSignal("ClockTime")
+			local connection130 = PropertyChangedSignal8:Connect(function()
+				Lighting3.ClockTime = 10
+			end)
+			Lighting3.GlobalShadows = true
+			Lighting3.ShadowSoftness = 0.08
+			sethiddenproperty(Lighting3, "Technology", "Future")
+			WindUI:Notify({ Title = "Shader Applied", Content = "Ocean Shader", Duration = 2 })
+		elseif Value == "Dark Shader" then
+			connection130:Disconnect()
+			local children32 = Lighting3:GetChildren()
+			for _, v55 in ipairs(children32) do
+				v55:Destroy()
+			end
+			Lighting3.ClockTime = Lighting3.ClockTime
+			Lighting3.ColorShift_Bottom = Lighting3.ColorShift_Bottom
+			Lighting3.FogColor = Lighting3.FogColor
+			Lighting3.FogEnd = Lighting3.FogEnd
+			Lighting3.ShadowSoftness = Lighting3.ShadowSoftness
+			Lighting3.EnvironmentDiffuseScale = Lighting3.EnvironmentDiffuseScale
+			Lighting3.EnvironmentSpecularScale = Lighting3.EnvironmentSpecularScale
+			Lighting3.FogStart = Lighting3.FogStart
+			Lighting3.GeographicLatitude = Lighting3.GeographicLatitude
+			Lighting3.Ambient = Lighting3.Ambient
+			Lighting3.OutdoorAmbient = Lighting3.OutdoorAmbient
+			Lighting3.ExposureCompensation = Lighting3.ExposureCompensation
+			Lighting3.Brightness = Lighting3.Brightness
+			Lighting3.ColorShift_Top = Lighting3.ColorShift_Top
+			Lighting3.GlobalShadows = Lighting3.GlobalShadows
+			local Clone18 = Clone17:Clone()
+			Clone18.Parent = Lighting3
+			local children33 = Lighting3:GetChildren()
+			for _, v56 in ipairs(children33) do
+				local Clone19 = v56:Clone()
+			end
+			local children34 = Lighting3:GetChildren()
+			for _, v57 in ipairs(children34) do
+				v57:Destroy()
+			end
+			local ColorCorrectionEffect10 = Instance.new("ColorCorrectionEffect", Lighting3)
+			ColorCorrectionEffect10.Brightness = 0
+			ColorCorrectionEffect10.Contrast = 0
+			ColorCorrectionEffect10.Saturation = -0.3
+			ColorCorrectionEffect10.TintColor = Color3.fromRGB(255, 255, 255)
+			ColorCorrectionEffect10.Enabled = true
+			local Atmosphere = Instance.new("Atmosphere", Lighting3)
+			Atmosphere.Density = 0.296
+			Atmosphere.Offset = 0
+			Atmosphere.Color = Color3.fromRGB(199, 170, 107)
+			Atmosphere.Decay = Color3.fromRGB(92, 60, 13)
+			Atmosphere.Glare = 0
+			Atmosphere.Haze = 0
+			local Sky10 = Instance.new("Sky", Lighting3)
+			Sky10.SkyboxBk = "http://www.roblox.com/asset/?id=245972325"
+			Sky10.SkyboxDn = "http://www.roblox.com/asset/?id=245972441"
+			Sky10.SkyboxFt = "http://www.roblox.com/asset/?id=245972389"
+			Sky10.SkyboxLf = "http://www.roblox.com/asset/?id=245972361"
+			Sky10.SkyboxRt = "http://www.roblox.com/asset/?id=245972302"
+			Sky10.SkyboxUp = "http://www.roblox.com/asset/?id=245972410"
+			Lighting3.ClockTime = 7.3
+			Lighting3.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
+			Lighting3.FogColor = Color3.fromRGB(93, 93, 93)
+			Lighting3.FogEnd = 600
+			Lighting3.EnvironmentDiffuseScale = 0.1
+			Lighting3.EnvironmentSpecularScale = 0
+			Lighting3.FogStart = 20
+			Lighting3.GeographicLatitude = 41.7333
+			Lighting3.Ambient = Color3.fromRGB(44, 33, 19)
+			Lighting3.OutdoorAmbient = Color3.fromRGB(115, 115, 115)
+			Lighting3.ExposureCompensation = -0.8
+			Lighting3.Brightness = 1.1
+			Lighting3.ColorShift_Top = Color3.fromRGB(0, 0, 0)
+			Lighting3.GlobalShadows = true
+			WindUI:Notify({ Title = "Shader Applied", Content = "Dark Shader", Duration = 2 })
+		elseif Value == "Realistic Shader" then
+			local children35 = Lighting3:GetChildren()
+			for _, v58 in ipairs(children35) do
+				v58:Destroy()
+			end
+			Lighting3.ClockTime = Lighting3.ClockTime
+			Lighting3.ColorShift_Bottom = Lighting3.ColorShift_Bottom
+			Lighting3.FogColor = Lighting3.FogColor
+			Lighting3.FogEnd = Lighting3.FogEnd
+			Lighting3.ShadowSoftness = Lighting3.ShadowSoftness
+			Lighting3.EnvironmentDiffuseScale = Lighting3.EnvironmentDiffuseScale
+			Lighting3.EnvironmentSpecularScale = Lighting3.EnvironmentSpecularScale
+			Lighting3.FogStart = Lighting3.FogStart
+			Lighting3.GeographicLatitude = Lighting3.GeographicLatitude
+			Lighting3.Ambient = Lighting3.Ambient
+			Lighting3.OutdoorAmbient = Lighting3.OutdoorAmbient
+			Lighting3.ExposureCompensation = Lighting3.ExposureCompensation
+			Lighting3.Brightness = Lighting3.Brightness
+			Lighting3.ColorShift_Top = Lighting3.ColorShift_Top
+			Lighting3.GlobalShadows = Lighting3.GlobalShadows
+			local Clone20 = Clone19:Clone()
+			Clone20.Parent = Lighting3
+			local children36 = Lighting3:GetChildren()
+			for _, v59 in ipairs(children36) do
+				v59:Clone()
+			end
+			local children37 = Lighting3:GetChildren()
+			for _, v60 in ipairs(children37) do
+				v60:Destroy()
+			end
+			loadstring(
+				game:HttpGet(
+					"https://raw.githubusercontent.com/warprbx/NightRewrite/refs/heads/main/Night/Games/Shader.lua"
+				)
+			)()
+			WindUI:Notify({ Title = "Shader Applied", Content = "Realistic Shader", Duration = 2 })
+		end
+	end,
+})
+Tab16:Colorpicker({
+	Title = "VFX Color",
+	Default = Color3.fromRGB(255, 255, 255),
+	Desc = "Pick a custom VFX color",
+	Flag = "Save56",
+	Locked = false,
+	Transparency = 0,
+	Callback = function() end,
+})
+Tab16:Dropdown({
+	Title = "Teleport",
+	Flag = "Save57",
+	Value = "None",
+	Values = {
+		"None",
+		"Saitama Death Counter",
+		"Atomic",
+		"Sky",
+		"Corner",
+		"Left Mountain",
+		"Right Mountain",
+		"Middle Mountain",
+		"Middle of Map",
+		"Base Plate",
+	},
+	Callback = function(Value)
+		if Value == "None" then
+		elseif Value == "Saitama Death Counter" then
+			Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame =
+				CFrame.new(Vector3.new(-64.56, 29.25, 20336.1))
+		elseif Value == "Atomic" then
+			Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame =
+				CFrame.new(Vector3.new(1064.54, 131.29, 23007.78))
+		elseif Value == "Sky" then
+			Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame =
+				CFrame.new(Vector3.new(373.62, 10343.44, -253.37))
+		elseif Value == "Corner" then
+			Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame =
+				CFrame.new(Vector3.new(-154.55, 439.51, -367.67))
+		elseif Value == "Left Mountain" then
+			Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame =
+				CFrame.new(Vector3.new(-17.4, 652.52, -391.01))
+		elseif Value == "Right Mountain" then
+			Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame =
+				CFrame.new(Vector3.new(776.64, 677.12, 99.28))
+		elseif Value == "Middle Mountain" then
+			Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame =
+				CFrame.new(Vector3.new(370.56, 628.29, -505.2))
+		elseif Value == "Middle of Map" then
+			Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame =
+				CFrame.new(Vector3.new(129.66, 440.75, -42.03))
+		elseif Value == "Base Plate" then
+			Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame =
+				CFrame.new(Vector3.new(1065.75, 20.63, 23041.6))
+		end
+	end,
+})
+Tab16:Divider()
+local Section = Tab16:Section({
+	Title = "Avatar Changer",
+	Color = Color3.fromHex("#a29bfe"),
+	Desc = "Change your avatar to someone else using username / id",
+	Flag = "Save58",
+	Image = "user",
+	ImageSize = 20,
+	Opened = true,
+})
+Section:Input({
+	Title = "User ID",
+	Flag = "Save59",
+	Placeholder = "Enter UserId or Username",
+	Value = "",
+	Callback = function(Value) end,
+})
+Section:Button({ Title = "Force Avatar Change", Flag = "Save60", Icon = "refresh-cw", Callback = function() end })
+Section:Button({
+	Title = "Headless Korblox",
+	Flag = "Save61",
+	Icon = "user-x",
+	Callback = function()
+		loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Headless-Korblox-47269"))()
+	end,
+})
+Tab16:Toggle({
+	Title = "Counter ESP",
+	Flag = "Save62",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			task.wait(0.5)
+			local players4 = Players5:GetPlayers()
+			for _, v61 in ipairs(players4) do
+				local connection131 = v61.Character:WaitForChild("Humanoid", 2).AnimationPlayed:Connect(function(arg1)
+					tostring(arg1.Animation.AnimationId):match("%d+")
+				end)
+				local connection133 = v61.CharacterAdded:Connect(function(character)
+					task.wait(1)
+					local connection132 = character:WaitForChild("Humanoid", 2).AnimationPlayed:Connect(function(arg1)
+						tostring(arg1.Animation.AnimationId):match("%d+")
+					end)
+				end)
+			end
+			WindUI:Notify({ Title = "Counter ESP", Content = "Enabled", Duration = 2 })
+		else
+			local children38 = Workspace:GetChildren()
+			for _, v62 in ipairs(children38) do
+				v62:Destroy()
+			end
+			connection131:Disconnect()
+			connection132:Disconnect()
+			connection133:Disconnect()
+			WindUI:Notify({ Title = "Counter ESP", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab16:Colorpicker({
+	Title = "Highlight Color",
+	Default = Color3.fromRGB(255, 0, 0),
+	Desc = "Color for Counter esp",
+	Flag = "Save63",
+	Locked = false,
+	Transparency = 0,
+	Callback = function()
+		WindUI:Notify({ Title = "Counter ESP", Content = "Color updated", Duration = 1 })
+	end,
+})
+Tab16:Toggle({
+	Title = "Block Indicator",
+	Flag = "Save64",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local players5 = Players5:GetPlayers()
+			for _, v63 in ipairs(players5) do
+				local connection134 = v63.Character
+					:FindFirstChildOfClass("Humanoid").AnimationPlayed
+					:Connect(function() end)
+			end
+			Players5.PlayerAdded:Connect(function(player)
+				player.CharacterAdded:Connect(function(character)
+					local connection135 = character:WaitForChild("Humanoid").AnimationPlayed:Connect(function() end)
+				end)
+			end)
+			WindUI:Notify({ Title = "Arrow Indicator", Content = "Enabled", Duration = 2 })
+		else
+			connection135:Disconnect()
+			connection134:Disconnect()
+			WindUI:Notify({ Title = "Arrow Indicator", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab16:Divider()
+Tab16:Toggle({
+	Title = "DashClip Enabled",
+	Desc = "Noclip when dashing",
+	Flag = "Save65",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local descendants8 = Workspace:GetDescendants()
+			for _, v64 in ipairs(descendants8) do
+				v64.AnimationPlayed:Connect(function(arg1)
+					tostring(arg1.Animation.AnimationId):match("%d+")
+				end)
+				v64.Died:Connect(function() end)
+				v64.AncestryChanged:Connect(function() end)
+				v64:FindFirstChildOfClass("Humanoid").AnimationPlayed:Connect(function(arg1)
+					tostring(arg1.Animation.AnimationId):match("%d+")
+				end)
+				v64:FindFirstChildOfClass("Humanoid").Died:Connect(function() end)
+				v64:FindFirstChildOfClass("Humanoid").AncestryChanged:Connect(function() end)
+			end
+			local children39 = Workspace:GetChildren()
+			for _, v65 in ipairs(children39) do
+				local lower = tostring(v65.Name):lower()
+				lower:find("live")
+				local descendants9 = v65:GetDescendants()
+				for _, v66 in ipairs(descendants9) do
+					v66.AnimationPlayed:Connect(function(arg1)
+						tostring(arg1.Animation.AnimationId):match("%d+")
+					end)
+					v66.Died:Connect(function() end)
+					v66.AncestryChanged:Connect(function() end)
+				end
+			end
+			Workspace.DescendantAdded:Connect(function(descendant)
+				descendant.AnimationPlayed:Connect(function(arg1)
+					tostring(arg1.Animation.AnimationId):match("%d+")
+				end)
+				descendant.Died:Connect(function() end)
+				descendant.AncestryChanged:Connect(function() end)
+			end)
+			RunService2.Heartbeat:Connect(function(deltaTime) end)
+			task.wait(1)
+			Players5.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").AnimationPlayed:Connect(function(arg1)
+				tostring(arg1.Animation.AnimationId):match("%d+")
+			end)
+			Players5.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Died:Connect(function() end)
+			Players5.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").AncestryChanged:Connect(function() end)
+			Players5.LocalPlayer.CharacterAdded:Connect(function(character)
+				task.wait(1)
+				character:FindFirstChildOfClass("Humanoid").AnimationPlayed:Connect(function(arg1)
+					tostring(arg1.Animation.AnimationId):match("%d+")
+				end)
+				character:FindFirstChildOfClass("Humanoid").Died:Connect(function() end)
+				character:FindFirstChildOfClass("Humanoid").AncestryChanged:Connect(function() end)
+			end)
+			WindUI:Notify({ Title = "DashClip", Content = "Enabled", Duration = 2, Icon = "lucide:check" })
+		else
+			WindUI:Notify({ Title = "DashClip", Content = "Disabled", Duration = 2, Icon = "lucide:x" })
+		end
+	end,
+})
+Tab16:Slider({
+	Title = "Noclip Duration",
+	Flag = "Save66",
+	Value = { Default = 550, Max = 2000, Min = 100 },
+	Callback = function(Value) end,
+})
+Tab16:Toggle({
+	Title = "No Clip Players",
+	Flag = "Save67",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection159 = RunService2.Stepped:Connect(function()
+				local players6 = Players5:GetPlayers()
+				for _, v67 in ipairs(players6) do
+					local descendants10 = v67.Character:GetDescendants()
+					for _, v68 in ipairs(descendants10) do
+						v68.CanCollide = false
+					end
+				end
+			end)
+		else
+			connection159:Disconnect()
+		end
+	end,
+})
+Tab16:Divider()
+Tab16:Toggle({
+	Title = "Enable ESP",
+	Flag = "SaveESPEnabled",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection160 = RunService2.RenderStepped:Connect(function()
+				local players7 = Players5:GetPlayers()
+				for _, v69 in ipairs(players7) do
+				end
+			end)
+		else
+			connection160:Disconnect()
+		end
+	end,
+})
+Tab16:Dropdown({
+	Title = "ESP Shape",
+	Flag = "SaveESPShape",
+	Value = "2D",
+	Values = { "2D", "3D", "Outlines" },
+	Callback = function() end,
+})
+Tab16:Colorpicker({
+	Title = "ESP Color",
+	Flag = "SaveESPColor",
+	Value = Color3.fromRGB(255, 255, 255),
+	Callback = function() end,
+})
+Tab16:Toggle({ Title = "Show Boxes", Flag = "SaveESPShowBoxes", Value = true, Callback = function() end })
+Tab16:Toggle({ Title = "Show Names", Flag = "SaveESPShowNames", Value = true, Callback = function() end })
+Tab16:Toggle({ Title = "Show Tracers", Flag = "SaveESPShowTracers", Value = true, Callback = function() end })
+Tab16:Toggle({ Title = "Show Health", Flag = "SaveESPShowHealth", Value = true, Callback = function() end })
+Tab16:Toggle({
+	Title = "Highlight Players",
+	Flag = "Save69",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local players8 = Players5:GetPlayers()
+			local Highlight = Instance.new("Highlight")
+			Highlight.FillTransparency = 1
+			Highlight.OutlineTransparency = 0
+			Highlight.OutlineColor = Color3.fromRGB(255, 80, 80)
+			for _, v70 in ipairs(players8) do
+				Highlight.Adornee = v70.Character
+				Highlight.Parent = v70.Character
+			end
+		else
+			Players5:GetPlayers()
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "Player Counts",
+	Flag = "Save71",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			Players5:GetPlayers()
+			local ScreenGui3 = Instance.new("ScreenGui")
+			ScreenGui3.ResetOnSpawn = false
+			ScreenGui3.Parent = Players5.LocalPlayer:WaitForChild("PlayerGui")
+			local TextLabel7 = Instance.new("TextLabel", ScreenGui3)
+			TextLabel7.Size = UDim2.new(0, 180, 0, 36)
+			TextLabel7.Position = UDim2.new(1, -190, 0, 10)
+			TextLabel7.BackgroundTransparency = 0.35
+			TextLabel7.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+			TextLabel7.TextColor3 = Color3.fromRGB(0, 255, 200)
+			TextLabel7.Font = Enum.Font.GothamBold
+			TextLabel7.TextSize = 18
+			local connection161 = RunService2.RenderStepped:Connect(function()
+				Players5:GetPlayers()
+				TextLabel7.Text = "Players: 1"
+			end)
+		else
+			Players5:GetPlayers()
+			connection161:Disconnect()
+			ScreenGui3:Destroy()
+		end
+	end,
+})
+Tab16:Divider()
+Tab16:Toggle({
+	Title = "M2 Block",
+	Flag = "Save72",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection162 = UserInputService.InputBegan:Connect(function() end)
+			local connection163 = UserInputService.InputEnded:Connect(function() end)
+		else
+			connection162:Disconnect()
+			connection163:Disconnect()
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "M1 Block (Compatible with M2 Block)",
+	Flag = "Save73",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local Mouse4 = Players5.LocalPlayer:GetMouse()
+			local connection164 = Mouse4.Button1Down:Connect(function()
+				Players5.LocalPlayer.Character
+					:WaitForChild("Communicate", 5)
+					:FireServer({ Goal = "KeyRelease", Key = Enum.KeyCode.F })
+			end)
+		else
+			connection164:Disconnect()
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "M1 Slide",
+	Flag = "Save74",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection165 = Players5.LocalPlayer.Character
+				:WaitForChild("Humanoid", 3)
+				:FindFirstChildOfClass("Animator").AnimationPlayed
+				:Connect(function(arg1)
+					arg1.Animation.AnimationId:match("%d+")
+				end)
+			local connection167 = Players5.LocalPlayer.CharacterAdded:Connect(function(character)
+				task.wait(1)
+				connection165:Disconnect()
+				local connection166 = character
+					:WaitForChild("Humanoid", 3)
+					:FindFirstChildOfClass("Animator").AnimationPlayed
+					:Connect(function(arg1)
+						arg1.Animation.AnimationId:match("%d+")
+					end)
+			end)
+		else
+			connection166:Disconnect()
+			connection167:Disconnect()
+		end
+	end,
+})
+Tab16:Divider()
+Tab16:Slider({
+	Title = "StretchScreen",
+	Flag = "Save75",
+	Value = { Default = 100, Max = 100, Min = 1 },
+	Callback = function(Value)
+		RunService2.RenderStepped:Connect(function()
+			workspace.CurrentCamera.CFrame = (
+				workspace.CurrentCamera.CFrame * CFrame.new(0, 0, 0, 1, 0, 0, 0, (Value / 100), 0, 0, 0, 1)
+			)
+		end)
+	end,
+})
+Tab16:Toggle({
+	Title = "Death Counter ESP",
+	Flag = "Save104",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local Players8 = game:GetService("Players")
+			local players13 = Players8:GetPlayers()
+			local Players9 = game:GetService("Players")
+			for _, v75 in ipairs(players13) do
+				Players9:GetPlayerFromCharacter(v75.Character)
+				local Highlight2 = Instance.new("Highlight")
+				Highlight2.Name = "DeathCounterHighlight"
+				Highlight2.Adornee = v75.Character
+				Highlight2.FillColor = Color3.fromRGB(255, 60, 60)
+				Highlight2.OutlineColor = Color3.fromRGB(160, 0, 0)
+				Highlight2.FillTransparency = 0.6
+				Highlight2.OutlineTransparency = 0.1
+				local CoreGui2 = game:GetService("CoreGui")
+				Highlight2.Parent = CoreGui2
+				task.delay(12, function()
+					Highlight2:Destroy()
+				end)
+				local connection169 = v75.Character.ChildAdded:Connect(function() end)
+				local connection171 = v75.CharacterAdded:Connect(function(character)
+					task.wait(1)
+					local Players10 = game:GetService("Players")
+					Players10:GetPlayerFromCharacter(character)
+					local Highlight3 = Instance.new("Highlight")
+					Highlight3.Name = "DeathCounterHighlight"
+					Highlight3.Adornee = character
+					Highlight3.FillColor = Color3.fromRGB(255, 60, 60)
+					Highlight3.OutlineColor = Color3.fromRGB(160, 0, 0)
+					Highlight3.FillTransparency = 0.6
+					Highlight3.OutlineTransparency = 0.1
+					local CoreGui3 = game:GetService("CoreGui")
+					Highlight3.Parent = CoreGui3
+					task.delay(12, function()
+						Highlight3:Destroy()
+					end)
+					local connection170 = character.ChildAdded:Connect(function() end)
+				end)
+			end
+			local Players11 = game:GetService("Players")
+			local connection174 = Players11.PlayerAdded:Connect(function(player)
+				local connection173 = player.CharacterAdded:Connect(function(character)
+					task.wait(1)
+					local Players12 = game:GetService("Players")
+					Players12:GetPlayerFromCharacter(character)
+					local Highlight4 = Instance.new("Highlight")
+					Highlight4.Name = "DeathCounterHighlight"
+					Highlight4.Adornee = character
+					Highlight4.FillColor = Color3.fromRGB(255, 60, 60)
+					Highlight4.OutlineColor = Color3.fromRGB(160, 0, 0)
+					Highlight4.FillTransparency = 0.6
+					Highlight4.OutlineTransparency = 0.1
+					local CoreGui4 = game:GetService("CoreGui")
+					Highlight4.Parent = CoreGui4
+					task.delay(12, function()
+						Highlight4:Destroy()
+					end)
+					local connection172 = character.ChildAdded:Connect(function() end)
+				end)
+			end)
+			local Players13 = game:GetService("Players")
+			local connection175 = Players13.PlayerRemoving:Connect(function() end)
+			WindUI:Notify({ Title = "Death Counter ESP", Content = "Enabled", Duration = 2 })
+		else
+			connection169:Disconnect()
+			connection170:Disconnect()
+			connection171:Disconnect()
+			connection172:Disconnect()
+			connection173:Disconnect()
+			connection174:Disconnect()
+			connection175:Disconnect()
+			WindUI:Notify({ Title = "Death Counter ESP", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "True Down Slam",
+	Flag = "Save76",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			Players5.LocalPlayer.Character:WaitForChild("Humanoid").AnimationPlayed:Connect(function() end)
+			Players5.LocalPlayer.CharacterAdded:Connect(function()
+				Players5.LocalPlayer.Character:WaitForChild("Humanoid").AnimationPlayed:Connect(function() end)
+			end)
+		else
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "Respawn at Death",
+	Flag = "Save77",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			getgenv().RespawnAtDeathPos = true
+			getgenv()._LastDeathPosition = nil
+			local connection180 = Players5.LocalPlayer.CharacterAdded:Connect(function()
+				getgenv()._LastDeathPosition = nil
+				Players5.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Died:Connect(function()
+					getgenv()._LastDeathPosition =
+						Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+				end)
+			end)
+			local connection181 = Players5.LocalPlayer.Character
+				:FindFirstChildOfClass("Humanoid").Died
+				:Connect(function()
+					getgenv()._LastDeathPosition =
+						Players5.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+				end)
+		else
+			connection180:Disconnect()
+			connection181:Disconnect()
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "FPS Boost",
+	Flag = "Save78",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local Lighting4 = game:GetService("Lighting")
+			workspace.Map.GrassBottom:Destroy()
+			workspace.Map.GrassTop:Destroy()
+			workspace.Map.Grass:Destroy()
+			workspace.Map.Trash:Destroy()
+			workspace.Map.Trees:Destroy()
+			workspace.Map.Walls:Destroy()
+			workspace.Map.GrassTop:Destroy()
+			workspace.Map.Grass:Destroy()
+			workspace.Map["Total Kills Leaderboard"]:Destroy()
+			workspace.Map["Total Kills Leaderboard Real"]:Destroy()
+			workspace.Map.Benchs:Destroy()
+			local descendants11 = workspace:GetDescendants()
+			for _, v76 in ipairs(descendants11) do
+				v76.CastShadow = false
+			end
+			local children40 = workspace.Thrown:GetChildren()
+			for _, v77 in ipairs(children40) do
+				v77:Destroy()
+			end
+			workspace.Thrown["Donation Leaderboard"]:Destroy()
+			Lighting4.FogEnd = 1000000
+			Lighting4.FogStart = 1000000
+			Lighting4.FogColor = Color3.new(0, 0, 0)
+			Lighting4.GlobalShadows = false
+			Lighting4.Brightness = 2
+			Lighting4.ClockTime = 12
+			Lighting4.EnvironmentDiffuseScale = 0
+			Lighting4.EnvironmentSpecularScale = 0
+			Lighting4.OutdoorAmbient = Color3.new(0.5, 0.5, 0.5)
+			local descendants12 = workspace:GetDescendants()
+			for _, v78 in ipairs(descendants12) do
+				v78:Destroy()
+				v78.Material = Enum.Material.SmoothPlastic
+				v78.Reflectance = 0
+				v78.CastShadow = false
+				v78:Destroy()
+				v78:Destroy()
+			end
+			workspace.Terrain.Decoration = false
+			workspace.Terrain.WaterWaveSize = 0
+			workspace.Terrain.WaterWaveSpeed = 0
+			workspace.Terrain.WaterReflectance = 0
+			workspace.Terrain.WaterTransparency = 1
+			getgenv().Settings = {}
+		else
+			WindUI:Notify({ Title = "FPS Boost", Content = "FPS Boost disabled", Duration = 3 })
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "Auto Jump(cuz why not)",
+	Flag = "Save79",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection182 = RunService2.Heartbeat:Connect(function()
+				Players5.LocalPlayer.Character:FindFirstChild("Humanoid"):GetState()
+			end)
+			WindUI:Notify({ Title = "Auto Jump", Content = "Enabled", Duration = 2 })
+		else
+			connection182:Disconnect()
+			WindUI:Notify({ Title = "Auto Jump", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab16:Divider()
+Tab16:Toggle({
+	Title = "No Stun",
+	Flag = "Save80",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection183 = RunService2.RenderStepped:Connect(function()
+				Players5.LocalPlayer.Character.Stunned:Destroy()
+				Players5.LocalPlayer.Character:FindFirstChild("Humanoid").PlatformStand = false
+			end)
+			WindUI:Notify({ Title = "No Stun", Content = "Enabled", Duration = 2 })
+		else
+			connection183:Disconnect()
+			WindUI:Notify({ Title = "No Stun", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "No Slow",
+	Flag = "Save81",
+	Image = "bird",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local connection184 = RunService2.RenderStepped:Connect(function() end)
+			WindUI:Notify({ Title = "No Slow", Content = "Enabled", Duration = 2 })
+		else
+			connection184:Disconnect()
+			WindUI:Notify({ Title = "No Slow", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "No Dash Cooldown",
+	Flag = "Save82",
+	Icon = "zap",
+	Image = "help-circle",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			WindUI:Notify({ Title = "No Dash Cooldown", Content = "Enabled", Duration = 2 })
+		else
+			WindUI:Notify({ Title = "No Dash Cooldown", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "No Fatigue",
+	Flag = "Save83",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			WindUI:Notify({ Title = "No Fatigue", Content = "Enabled", Duration = 2 })
+		else
+			WindUI:Notify({ Title = "No Fatigue", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "Emotes Extra Slots",
+	Flag = "Save84",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			WindUI:Notify({ Title = "Emotes Extra Slots", Content = "Enabled", Duration = 2 })
+		else
+			WindUI:Notify({ Title = "Emotes Extra Slots", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "Emotes Search Bar",
+	Flag = "Save85",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			WindUI:Notify({ Title = "Emotes Search Bar", Content = "Enabled", Duration = 2 })
+		else
+			WindUI:Notify({ Title = "Emotes Search Bar", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab16:Divider()
+Tab16:Toggle({
+	Title = "Speed Boost",
+	Flag = "Save86",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			WindUI:Notify({ Title = "Speed Boost", Content = "Enabled", Duration = 2 })
+		else
+			WindUI:Notify({ Title = "Speed Boost", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab16:Slider({
+	Title = "Speed Value",
+	Flag = "Save87",
+	Value = { Default = 0.1, Max = 5, Min = 0 },
+	Callback = function() end,
+})
+Tab16:Toggle({
+	Title = "Jump Boost",
+	Flag = "Save88",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			WindUI:Notify({ Title = "Jump Boost", Content = "Enabled", Duration = 2 })
+		else
+			WindUI:Notify({ Title = "Jump Boost", Content = "Disabled", Duration = 2 })
+		end
+	end,
+})
+Tab16:Slider({
+	Title = "Jump Height",
+	Flag = "Save89",
+	Value = { Default = 7.2, Max = 500, Min = 7.2 },
+	Callback = function() end,
+})
+Tab16:Slider({
+	Title = "Gravity",
+	Flag = "Save90",
+	Value = { Default = 192.6, Max = 192.6, Min = 0 },
+	Callback = function() end,
+})
+Tab16:Slider({ Title = "FOV", Flag = "Save91", Value = { Default = 70, Max = 120, Min = 0 }, Callback = function() end })
+Tab16:Divider()
+Tab16:Toggle({
+	Title = "Counter Toxic",
+	Flag = "Save92",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local players14 = Players5:GetPlayers()
+			for _, v79 in ipairs(players14) do
+				v79.Character:FindFirstChildOfClass("Humanoid").AnimationPlayed:Connect(function(arg1)
+					tostring(arg1.Animation.AnimationId):match("%d+")
+				end)
+				v79.CharacterAdded:Connect(function(character)
+					character:WaitForChild("Humanoid").AnimationPlayed:Connect(function(arg1)
+						tostring(arg1.Animation.AnimationId):match("%d+")
+					end)
+				end)
+			end
+			WindUI:Notify({ Title = "Counter Toxic", Content = "Counter Toxic enabled", Duration = 3 })
+		else
+			WindUI:Notify({ Title = "Counter Toxic", Content = "Counter Toxic disabled", Duration = 3 })
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "Show Character",
+	Flag = "Save93",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local Players15 = game:GetService("Players")
+			Players15.PlayerAdded:Connect(function(player)
+				player.CharacterAdded:Connect(function()
+					player.Character:WaitForChild("Head"):FindFirstChild("b"):Destroy()
+					local Attribute10 = player:GetAttribute("Character")
+					local BillboardGui = Instance.new("BillboardGui")
+					BillboardGui.Name = "b"
+					BillboardGui.Size = UDim2.new(2, 0, 2, 0)
+					BillboardGui.AlwaysOnTop = true
+					BillboardGui.MaxDistance = 50
+					BillboardGui.Adornee = player.Character:WaitForChild("Head")
+					BillboardGui.Parent = player.Character:WaitForChild("Head")
+					BillboardGui.StudsOffset = Vector3.new(0, 2.5, 0)
+					local ImageLabel = Instance.new("ImageLabel")
+					ImageLabel.Size = UDim2.new(1, 0, 1, 0)
+					ImageLabel.BackgroundTransparency = 1
+					ImageLabel.Image =
+						Players15.LocalPlayer:WaitForChild("PlayerGui").TopbarPlus.TopbarContainer.UnnamedIcon.DropdownContainer.DropdownFrame[Attribute10].IconButton.IconImage.Image
+					ImageLabel.Parent = BillboardGui
+				end)
+				local AttributeChangedSignal = player:GetAttributeChangedSignal("Character")
+				AttributeChangedSignal:Connect(function()
+					player.Character:WaitForChild("Head"):FindFirstChild("b"):Destroy()
+					local Attribute11 = player:GetAttribute("Character")
+					local BillboardGui2 = Instance.new("BillboardGui")
+					BillboardGui2.Name = "b"
+					BillboardGui2.Size = UDim2.new(2, 0, 2, 0)
+					BillboardGui2.AlwaysOnTop = true
+					BillboardGui2.MaxDistance = 50
+					BillboardGui2.Adornee = player.Character:WaitForChild("Head")
+					BillboardGui2.Parent = player.Character:WaitForChild("Head")
+					BillboardGui2.StudsOffset = Vector3.new(0, 2.5, 0)
+					local ImageLabel2 = Instance.new("ImageLabel")
+					ImageLabel2.Size = UDim2.new(1, 0, 1, 0)
+					ImageLabel2.BackgroundTransparency = 1
+					ImageLabel2.Image =
+						Players15.LocalPlayer:WaitForChild("PlayerGui").TopbarPlus.TopbarContainer.UnnamedIcon.DropdownContainer.DropdownFrame[Attribute11].IconButton.IconImage.Image
+					ImageLabel2.Parent = BillboardGui2
+				end)
+				player.Character:WaitForChild("Head"):FindFirstChild("b"):Destroy()
+				local Attribute12 = player:GetAttribute("Character")
+				local BillboardGui3 = Instance.new("BillboardGui")
+				BillboardGui3.Name = "b"
+				BillboardGui3.Size = UDim2.new(2, 0, 2, 0)
+				BillboardGui3.AlwaysOnTop = true
+				BillboardGui3.MaxDistance = 50
+				BillboardGui3.Adornee = player.Character:WaitForChild("Head")
+				BillboardGui3.Parent = player.Character:WaitForChild("Head")
+				BillboardGui3.StudsOffset = Vector3.new(0, 2.5, 0)
+				local ImageLabel3 = Instance.new("ImageLabel")
+				ImageLabel3.Size = UDim2.new(1, 0, 1, 0)
+				ImageLabel3.BackgroundTransparency = 1
+				ImageLabel3.Image =
+					Players15.LocalPlayer:WaitForChild("PlayerGui").TopbarPlus.TopbarContainer.UnnamedIcon.DropdownContainer.DropdownFrame[Attribute12].IconButton.IconImage.Image
+				ImageLabel3.Parent = BillboardGui3
+			end)
+			Players15.PlayerRemoving:Connect(function(player)
+				player.Character.Head:FindFirstChild("b"):Destroy()
+			end)
+			local players15 = Players15:GetPlayers()
+			for _, v80 in ipairs(players15) do
+				v80.CharacterAdded:Connect(function()
+					v80.Character:WaitForChild("Head"):FindFirstChild("b"):Destroy()
+					local Attribute13 = v80:GetAttribute("Character")
+					local BillboardGui4 = Instance.new("BillboardGui")
+					BillboardGui4.Name = "b"
+					BillboardGui4.Size = UDim2.new(2, 0, 2, 0)
+					BillboardGui4.AlwaysOnTop = true
+					BillboardGui4.MaxDistance = 50
+					BillboardGui4.Adornee = v80.Character:WaitForChild("Head")
+					BillboardGui4.Parent = v80.Character:WaitForChild("Head")
+					BillboardGui4.StudsOffset = Vector3.new(0, 2.5, 0)
+					local ImageLabel4 = Instance.new("ImageLabel")
+					ImageLabel4.Size = UDim2.new(1, 0, 1, 0)
+					ImageLabel4.BackgroundTransparency = 1
+					ImageLabel4.Image =
+						Players15.LocalPlayer:WaitForChild("PlayerGui").TopbarPlus.TopbarContainer.UnnamedIcon.DropdownContainer.DropdownFrame[Attribute13].IconButton.IconImage.Image
+					ImageLabel4.Parent = BillboardGui4
+				end)
+				local AttributeChangedSignal2 = v80:GetAttributeChangedSignal("Character")
+				AttributeChangedSignal2:Connect(function()
+					v80.Character:WaitForChild("Head"):FindFirstChild("b"):Destroy()
+					local Attribute14 = v80:GetAttribute("Character")
+					local BillboardGui5 = Instance.new("BillboardGui")
+					BillboardGui5.Name = "b"
+					BillboardGui5.Size = UDim2.new(2, 0, 2, 0)
+					BillboardGui5.AlwaysOnTop = true
+					BillboardGui5.MaxDistance = 50
+					BillboardGui5.Adornee = v80.Character:WaitForChild("Head")
+					BillboardGui5.Parent = v80.Character:WaitForChild("Head")
+					BillboardGui5.StudsOffset = Vector3.new(0, 2.5, 0)
+					local ImageLabel5 = Instance.new("ImageLabel")
+					ImageLabel5.Size = UDim2.new(1, 0, 1, 0)
+					ImageLabel5.BackgroundTransparency = 1
+					ImageLabel5.Image =
+						Players15.LocalPlayer:WaitForChild("PlayerGui").TopbarPlus.TopbarContainer.UnnamedIcon.DropdownContainer.DropdownFrame[Attribute14].IconButton.IconImage.Image
+					ImageLabel5.Parent = BillboardGui5
+				end)
+				v80.Character:WaitForChild("Head"):FindFirstChild("b"):Destroy()
+				local Attribute15 = v80:GetAttribute("Character")
+				local BillboardGui6 = Instance.new("BillboardGui")
+				BillboardGui6.Name = "b"
+				BillboardGui6.Size = UDim2.new(2, 0, 2, 0)
+				BillboardGui6.AlwaysOnTop = true
+				BillboardGui6.MaxDistance = 50
+				BillboardGui6.Adornee = v80.Character:WaitForChild("Head")
+				BillboardGui6.Parent = v80.Character:WaitForChild("Head")
+				BillboardGui6.StudsOffset = Vector3.new(0, 2.5, 0)
+				local ImageLabel6 = Instance.new("ImageLabel")
+				ImageLabel6.Size = UDim2.new(1, 0, 1, 0)
+				ImageLabel6.BackgroundTransparency = 1
+				ImageLabel6.Image =
+					Players15.LocalPlayer:WaitForChild("PlayerGui").TopbarPlus.TopbarContainer.UnnamedIcon.DropdownContainer.DropdownFrame[Attribute15].IconButton.IconImage.Image
+			end
+			ImageLabel6.Parent = BillboardGui6
+			WindUI:Notify({ Title = "Show Character", Content = "Show Character enabled", Duration = 3 })
+		else
+			local Players16 = game:GetService("Players")
+			local players16 = Players16:GetPlayers()
+			for _, v81 in ipairs(players16) do
+				v81.Character.Head:FindFirstChild("b"):Destroy()
+			end
+			WindUI:Notify({ Title = "Show Character", Content = "Show Character disabled", Duration = 3 })
+		end
+	end,
+})
+Tab16:Toggle({
+	Title = "Dash Timer",
+	Flag = "Save94",
+	Value = false,
+	Callback = function(Value)
+		if Value then
+			local Players17 = game:GetService("Players")
+			Players17.PlayerAdded:Connect(function(player)
+				task.spawn(function(arg1)
+					task.wait(0.1)
+					local PlayingAnimationTracks13 =
+						arg1.Character:FindFirstChild("Humanoid"):GetPlayingAnimationTracks()
+					for _, v82 in ipairs(PlayingAnimationTracks13) do
+						tostring(v82.Animation.AnimationId):find("10479335397", 1, true)
+					end
+					task.spawn(function()
+						arg1:WaitForChild("PlayerGui"):FindFirstChild("CooldownSlider").Main:GetAttribute("Active")
+					end)
+					task.wait(0.1)
+					while true do
+						local PlayingAnimationTracks14 =
+							arg1.Character:FindFirstChild("Humanoid"):GetPlayingAnimationTracks()
+						for _, v83 in ipairs(PlayingAnimationTracks14) do
+							tostring(v83.Animation.AnimationId):find("10479335397", 1, true)
+							tostring(v83.Animation.AnimationId):find("15955393872", 1, true)
+							tostring(v83.Animation.AnimationId):find("16310343179", 1, true)
+							tostring(v83.Animation.AnimationId):find("15943915877", 1, true)
+							tostring(v83.Animation.AnimationId):find("16023456135", 1, true)
+							tostring(v83.Animation.AnimationId):find("15944317351", 1, true)
+							tostring(v83.Animation.AnimationId):find("15997042291", 1, true)
+							tostring(v83.Animation.AnimationId):find("16311141574", 1, true)
+							tostring(v83.Animation.AnimationId):find("18181589384", 1, true)
+							tostring(v83.Animation.AnimationId):find("131492147325921", 1, true)
+							tostring(v83.Animation.AnimationId):find("13380255751", 1, true)
+						end
+						task.wait(0.1)
+					end
+				end, player)
+			end)
+			local players17 = Players17:GetPlayers()
+			for _, v85 in ipairs(players17) do
+				task.spawn(function(arg1)
+					task.wait(0.1)
+					local PlayingAnimationTracks16 =
+						arg1.Character:FindFirstChild("Humanoid"):GetPlayingAnimationTracks()
+					for _, v86 in ipairs(PlayingAnimationTracks16) do
+						tostring(v86.Animation.AnimationId):find("10479335397", 1, true)
+					end
+					task.spawn(function()
+						arg1:WaitForChild("PlayerGui"):FindFirstChild("CooldownSlider").Main:GetAttribute("Active")
+					end)
+					task.wait(0.1)
+					while true do
+						local PlayingAnimationTracks17 =
+							arg1.Character:FindFirstChild("Humanoid"):GetPlayingAnimationTracks()
+						for _, v87 in ipairs(PlayingAnimationTracks17) do
+							tostring(v87.Animation.AnimationId):find("10479335397", 1, true)
+							tostring(v87.Animation.AnimationId):find("15955393872", 1, true)
+							tostring(v87.Animation.AnimationId):find("16310343179", 1, true)
+							tostring(v87.Animation.AnimationId):find("15943915877", 1, true)
+							tostring(v87.Animation.AnimationId):find("16023456135", 1, true)
+							tostring(v87.Animation.AnimationId):find("15944317351", 1, true)
+							tostring(v87.Animation.AnimationId):find("15997042291", 1, true)
+							tostring(v87.Animation.AnimationId):find("16311141574", 1, true)
+							tostring(v87.Animation.AnimationId):find("18181589384", 1, true)
+							tostring(v87.Animation.AnimationId):find("131492147325921", 1, true)
+							tostring(v87.Animation.AnimationId):find("13380255751", 1, true)
+						end
+						task.wait(0.1)
+					end
+				end, v85)
+			end
+			WindUI:Notify({ Title = "Dash Timer", Content = "Dash Timer enabled", Duration = 3 })
+		else
+			WindUI:Notify({ Title = "Dash Timer", Content = "Dash Timer disabled", Duration = 3 })
+		end
+	end,
+})
+Tab17:Paragraph({
+	Title = "Customize Interface",
+	Color = "White",
+	Desc = "Personalize your experience",
+	Image = "palette",
+	ImageSize = 20,
+})
+Tab17:Keybind({
+	Title = "Keybind",
+	Desc = "Keybind to open ui",
+	Flag = "Save95",
+	Value = "K",
+	Callback = function(Value)
+		Window:SetToggleKey(Enum.KeyCode[Value])
+	end,
+})
+WindUI:GetThemes()
+local CurrentTheme = WindUI:GetCurrentTheme()
+Tab17:Dropdown({
+	Title = "Select Theme",
+	MenuWidth = 280,
+	SearchBarEnabled = true,
+	Value = CurrentTheme,
+	Values = { 1 },
+	Callback = function(Value)
+		WindUI:SetTheme(Value)
+		WindUI:Notify({ Title = "Theme Applied", Content = Value, Duration = 2, Icon = "palette" })
+	end,
+})
+makefolder("DoviHub")
+local Input2 = Tab17:Input({ Title = "Config Name", Icon = "file-cog", Callback = function() end })
+local AllConfigs = Window.ConfigManager:AllConfigs()
+Tab17:Dropdown({
+	Title = "All Configs",
+	Desc = "Select existing configs",
+	Value = Value,
+	Values = AllConfigs,
+	Callback = function(Value)
+		Input2:Set(Value)
+	end,
+})
+Tab17:Toggle({
+	Title = "Auto Load",
+	Default = false,
+	Desc = "Auto Load Selected Config",
+	Callback = function(Value)
+		if Value then
+			makefolder("DoviHub")
+			local HttpService2 = game:GetService("HttpService")
+			HttpService2:JSONEncode({ ConfigName = Value, Enabled = Value })
+		else
+			makefolder("DoviHub")
+			local HttpService3 = game:GetService("HttpService")
+			HttpService3:JSONEncode({ ConfigName = Value, Enabled = false })
+		end
+	end,
+})
+Tab17:Button({
+	Title = "Save Config",
+	Icon = "",
+	Justify = "Center",
+	Callback = function()
+		local Config = Window.ConfigManager:CreateConfig(Value)
+		Window.CurrentConfig = Config
+		Config:Save()
+		WindUI:Notify({ Title = "Config Saved", Desc = "Config '" .. Value .. "' saved", Icon = "check" })
+	end,
+})
+Tab17:Button({
+	Title = "Load Config",
+	Icon = "",
+	Justify = "Center",
+	Callback = function()
+		local Config2 = Window.ConfigManager:CreateConfig(Value)
+		Window.CurrentConfig = Config2
+		Config2:Load()
+		WindUI:Notify({ Title = "Config Loaded", Desc = "Config '" .. Value .. "' loaded", Icon = "refresh-cw" })
+	end,
+})
+WindUI:OnThemeChange(function() end)
+WindUI:SetFont("rbxassetid://12187377325")
+local StarterGui = game:GetService("StarterGui")
+StarterGui.SetCore = function() end
+local Players18 = game:GetService("Players")
+local RunService6 = game:GetService("RunService")
+while true do
+	RunService6.RenderStepped:Wait()
+end
